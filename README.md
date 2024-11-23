@@ -4,13 +4,16 @@ virtual-casino/
 ├── node_modules/                       # Dependencies installed via npm
 ├── public/                             # Static assets
 │   ├── css/                            # Stylesheets
-│   │   ├── backjack.css                # Style for backjack game (blackjack.html)
+│   │   ├── blackjack.css               # Style for blackjack game (blackjack.html)
 │   │   ├── roulette.css                # Style for roulette game (roulette.html)
 │   │   ├── slotMachine.css             # Style for slot machine game (slotMachine.html)
 │   │   └── styles.css                  # Style for main page (index.html)
 │   ├── images/                         # Folder for casino-related images
 │   ├── js/                             # Frontend JavaScript files
-│   │   └── script.js                   # Optional client-side game logic
+│   │   ├── blackjack.js                # Script to display information of the blackjack game
+│   │   ├── roulette.js                 # Script to display information of the roulette game
+│   │   ├── script.js                   # Script to display information of the main page
+│   │   └── slotMachine.css             # Script to display information of the slot machine game
 │   ├── blackjack.html                  # Blackjack game page 
 │   ├── index.html                      # Casino main page 
 │   ├── login.html                      # Login page 
@@ -26,10 +29,11 @@ virtual-casino/
 │   │   ├── db.js                       # SQLite connection and setup
 │   │   └── casino.sqlite               # SQLite database file
 │   ├── models/                         # Models for database queries
+│   │   ├── gamesModel.js               # Games-related database operations
 │   │   └── userModel.js                # User-related database operations
 │   ├── routes/                         # API route definitions
-│   │   ├── gamesRoutes.js
-│   │   └── userRoutes.js
+│   │   ├── gamesRoutes.js              # Games API routes 
+│   │   └── userRoutes.js               # User related API routes
 │   ├── middlewares/                    # Optional middleware (e.g., authentication)
 │   │   └── auth.js                     # Authentication middleware
 │   ├── app.js                          # Express app setup and configuration
@@ -39,6 +43,7 @@ virtual-casino/
 ├── package.json                        # Project metadata and dependencies
 └── README.md                           # Project description and usage instructions
 ```
+
 ### **Paint Drop: The Virtual Casino Currency**
 
 In our virtual casino, we’ve created a unique currency that ties into the theme of the casino: **Paint Drop**! Inspired by the creative world of painting, each *Paint Drop* represents a unit of currency used to place bets and interact with games within the casino.
@@ -88,6 +93,6 @@ CREATE TABLE IF NOT EXISTS users (
 If you want to turn your virtual winnings into real-world rewards, you can convert your Paint Drops into real money (credits) based on the in-game exchange rate.
 
 ### **How to Use Paint Drops in the Casino**
-Login Page: When you log in, you'll see your current Paint Drop balance, letting you know how much you can play with.
-Game Pages: Place your Paint Drop bets on any of the available games. Each game shows you the cost of each bet in Paint Drops.
-Balance Updates: As you win or lose, your Paint Drop balance will be updated in real time.
+  - **Login Page:** When you log in, you'll see your current Paint Drop balance, letting you know how much you can play with.
+  - **Game Pages:** Place your Paint Drop bets on any of the available games. Each game shows you the cost of each bet in Paint Drops.
+  - **Balance Updates:** As you win or lose, your Paint Drop balance will be updated in real time.

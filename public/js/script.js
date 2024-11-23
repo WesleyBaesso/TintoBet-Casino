@@ -28,4 +28,3 @@ app.post('/api/login', (req, res) => {
     });
 });
 
-// Other routes and server setup...
