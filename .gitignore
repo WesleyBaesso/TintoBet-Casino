@@ -1,0 +1,10 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore .env file (which contains sensitive data)
+.env
+
+# Optionally, ignore logs or build directories if any
+*.log
+build/
+dist/
