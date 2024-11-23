@@ -1,10 +1,22 @@
-# Ignore node_modules folder
-node_modules/
+# Node.js dependencies
+/node_modules/
 
-# Ignore .env file (which contains sensitive data)
+# SQLite database file
+/src/database/casino.sqlite
+
+# Environment variables file (keep secrets like API keys, DB credentials, etc.)
 .env
 
-# Optionally, ignore logs or build directories if any
+# Log files
 *.log
-build/
-dist/
+
+# Optional: Ignore any temporary or build directories
+/dist/
+/build/
+
+# Optional: Ignore other IDE-specific files
+.vscode/
+.idea/
+
+# MacOS specific files (if applicable)
+.DS_Store
