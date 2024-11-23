@@ -1,5 +1,5 @@
 # Tinto_Bet
-
+"""
 virtual-casino/
 ├── node_modules/          # Dependencies installed via npm
 ├── public/                # Static assets
@@ -36,3 +36,4 @@ virtual-casino/
 ├── .gitignore             # Ignoring node_modules, database, etc.
 ├── package.json           # Project metadata and dependencies
 └── README.md              # Project description and usage instructions
+"""
