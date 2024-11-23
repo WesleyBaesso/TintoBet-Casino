@@ -6,21 +6,22 @@ virtual-casino/
 │   ├── css/                            # Stylesheets
 │   │   ├── blackjack.css               # Style for blackjack game (blackjack.html)
 │   │   ├── roulette.css                # Style for roulette game (roulette.html)
-│   │   ├── slotMachine.css             # Style for slot machine game (slotMachine.html)
+│   │   ├── slot-machine.css             # Style for slot machine game (slotMachine.html)
 │   │   └── styles.css                  # Style for main page (index.html)
 │   ├── images/                         # Folder for casino-related images
 │   ├── js/                             # Frontend JavaScript files
 │   │   ├── blackjack.js                # Script to display information of the blackjack game
 │   │   ├── roulette.js                 # Script to display information of the roulette game
 │   │   ├── script.js                   # Script to display information of the main page
-│   │   └── slotMachine.css             # Script to display information of the slot machine game
+│   │   └── slotMachine.js             # Script to display information of the slot machine game
 │   ├── blackjack.html                  # Blackjack game page 
 │   ├── index.html                      # Casino main page 
 │   ├── login.html                      # Login page 
 │   ├── roulette.html                   # Roulette game page
-│   └── slotMachine.html                # Slot Machine game page
+│   └── slot-machine.html                # Slot Machine game page
 ├── src/                                # Source code for the application
 │   ├── controllers/                    # Controllers for handling logic
+│   │   ├── gamesController.js          # Processes the requests from the games and calls the functions on the models
 │   │   ├── blackjackController.js      # BlackJack game logic
 │   │   ├── slotsController.js          # Slots Machine game logic
 │   │   ├── rouletteController.js       # Roulette game logic
