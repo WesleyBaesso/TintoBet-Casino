@@ -18,9 +18,8 @@ const initializeDatabase = () => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
-            credits INTEGER DEFAULT 1000,
-            profit INTEGER DEFAULT 0,
-            paint_drops INTEGER DEFAULT 0,
+            profit INTEGER DEFAULT 0, -- How much paintDrops the user has won
+            paint_drops INTEGER DEFAULT 0, -- The amount of paint drops the user has
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `, (err) => {
@@ -36,8 +35,8 @@ const initializeDatabase = () => {
         CREATE TABLE IF NOT EXISTS blackjack_games (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,
-            bet INTEGER NOT NULL,
-            result TEXT NOT NULL,
+            bet INTEGER NOT NULL, -- The amount the user bet on the game
+            result TEXT NOT NULL, -- The result of the game (WIN, LOSS, DRAW)
             win_loss_amount INTEGER NOT NULL,  -- The amount won or lost in the game
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY(user_id) REFERENCES users(id)
@@ -55,10 +54,8 @@ const initializeDatabase = () => {
         CREATE TABLE IF NOT EXISTS roulette_games (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,
-            bet INTEGER NOT NULL,
-            result TEXT NOT NULL,
-            bet_number INTEGER,  -- The number the player bet on (if applicable)
-            bet_color TEXT,      -- The color the player bet on (if applicable)
+            bet INTEGER NOT NULL, -- The amount the user bet on the game
+            result TEXT NOT NULL, -- The result of the game (WIN, LOSS, DRAW)
             win_loss_amount INTEGER NOT NULL,  -- The amount won or lost in the game
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY(user_id) REFERENCES users(id)
@@ -76,8 +73,8 @@ const initializeDatabase = () => {
         CREATE TABLE IF NOT EXISTS slotmachine_games (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,
-            bet INTEGER NOT NULL,
-            result TEXT NOT NULL,
+            bet INTEGER NOT NULL, -- The amount the user bet on the game
+            result TEXT NOT NULL, -- The result of the game (WIN, LOSS, DRAW)
             win_loss_amount INTEGER NOT NULL,  -- The amount won or lost in the game
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY(user_id) REFERENCES users(id)
