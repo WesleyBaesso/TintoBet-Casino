@@ -1,0 +1,101 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+header {
+    background-color: #1a1a1a;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #444;
+}
+
+header .logo h1 {
+    color: #ffcc00;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffcc00;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ff6600;
+}
+
+.banner {
+    text-align: center;
+    padding: 3rem;
+    background: url('images/casino-background.jpg') no-repeat center;
+    background-size: cover;
+}
+
+.banner h2 {
+    font-size: 2.5rem;
+    color: #ffcc00;
+}
+
+.play-now {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.play-now:hover {
+    background-color: #cc0000;
+}
+
+.game-gallery {
+    padding: 2rem;
+    text-align: center;
+}
+
+.games {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.game-card {
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #000;
+}
+
+footer {
+    background-color: #1a1a1a;
+    padding: 1rem;
+    text-align: center;
+    border-top: 2px solid #444;
+}
+
+footer .social-media {
+    margin-top: 1rem;
+}
+
+footer .social-media img {
+    width: 24px;
+    height: 24px;
+    margin: 0 0.5rem;
+}
