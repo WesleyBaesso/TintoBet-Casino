@@ -3,9 +3,9 @@ const app = express();
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const gamesRoutes = require('./routes/gamesRoutes');
-const userRoutes = require('./routes/userRoutes');
-const authMiddleware = require('./middlewares/auth');
+const gamesRoutes = require('./src/routes/gamesRoutes');
+const userRoutes = require('./src/routes/userRoutes');
+const authMiddleware = require('./src/middlewares/auth');
 
 // Middlewares
 app.use(cors()); // Enable cross-origin resource sharing for the API
