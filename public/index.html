@@ -4,56 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TintoBet</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/font/stylesheet.css">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <h1>TintoBet</h1>
+        <div class="header-container">
+            <div class="logo">
+                <img src="/img/Tinto_Bet-removebg-preview.png" alt="Tinto Bet Logo">
+            </div>
+            
+            <nav>
+                <button class="btn login-btn">Chips</button>
+                <button class="btn signup-btn">Account</button>
+                <button class="btn signup-btn">Profil</button>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#games">Jogos</a></li>
-                <li><a href="#login">Login/Registrar</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <section class="banner">
-            <h2>Bem-vindo ao TintoBet</h2>
-            <p>Explore nossos jogos!</p>
-            <button class="play-now">Jogue Agora</button>
-        </section>
-
-        <section class="game-gallery">
-            <h2>Nossos Jogos</h2>
+        <section class="dashboard">
+            <div class="user-info">
+                <h1>Welcome to TINTOBET!</h1>
+                <p>O melhor lugar para testar sua sorte!</p>
+                <button class="btn account-btn">Play Games</button>
+            </div>
             <div class="games">
-                <div class="game-card">
-                    <img src="images/blackjack.png" alt="BlackJack">
-                    <button class="play-now">Jogar BlackJack</button>
-                </div>
-                <div class="game-card">
-                    <img src="images/roulette.png" alt="Roleta">
-                    <button class="play-now">Jogar Roleta</button>
-                </div>
-                <div class="game-card">
-                    <img src="images/slots.png" alt="Slots">
-                    <button class="play-now">Jogar Slots</button>
+                <h2>Best Games</h2>
+                <div class="game-grid">
+                    <div class="game-card" id="blackjack">
+                        <h3>Black Jack "21"</h3>
+                        <img src="/img/baralho-de-cartas.png" alt="">
+                        <p>Beat the dealer!</p>
+                        <button class="btn play-btn">Play</button>
+                    </div>
+                    <div class="game-card" id="roulette">
+                        <h3>Roulette</h3>
+                        <img src="/img/roleta-de-cassino.png" alt="">
+                        <p>Place your bets!</p>
+                        <button class="btn play-btn">Play</button>
+                    </div>
+                    <div class="game-card" id="slot">
+                        <h3>Slot Machine</h3>
+                        <img src="/img/slot-machine.png" alt="">
+                        <p>Spin to win big!</p>
+                        <button class="btn play-btn">Play</button>
+                    </div>
+                    
                 </div>
             </div>
         </section>
     </main>
-
+    
     <footer>
-        <p>© 2024 TintoBet - Todos os direitos reservados</p>
-        <div class="social-media">
-            <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
-            <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
-        </div>
+        <p>© 2024 Tinto Bet Casino. Play responsibly.</p>
     </footer>
-
-    <script src="js/script.js"></script>
+    
 </body>
 </html>
