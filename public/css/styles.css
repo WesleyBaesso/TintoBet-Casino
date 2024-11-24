@@ -1,3 +1,75 @@
+@font-face {
+    font-family: 'woodshed';
+    src: url('../fonts/woodshed-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'woodshed';
+    src: url('../fonts/woodshed-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'woodshedtexture';
+    src: url('../fonts/woodshed-texture-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-texture-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'agdasima';
+    src: url('../fonts/agdasima-bold-webfont.woff2') format('woff2'),
+         url('../fonts/agdasima-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'agdasima';
+    src: url('../fonts/agdasima-regular-webfont.woff2') format('woff2'),
+         url('../fonts/agdasima-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-bold-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-regular-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
     display: flex;
     flex-direction: column;
