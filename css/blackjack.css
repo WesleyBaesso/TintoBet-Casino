@@ -1,0 +1,314 @@
+@font-face {
+    font-family: 'woodshed';
+    src: url('../fonts/woodshed-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'woodshed';
+    src: url('../fonts/woodshed-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'woodshedtexture';
+    src: url('../fonts/woodshed-texture-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-texture-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'agdasima';
+    src: url('../fonts/agdasima-bold-webfont.woff2') format('woff2'),
+         url('../fonts/agdasima-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'agdasima';
+    src: url('../fonts/agdasima-regular-webfont.woff2') format('woff2'),
+         url('../fonts/agdasima-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-bold-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-regular-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle, #006400, #000000); /* Gradiente de preto para vermelho (como as máquinas de cassino) */
+    color: #fff;
+    margin: 0;
+}
+
+/* Header (Floating Island) */
+header {
+    position: relative;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, #006400, #063506); /* Gradiente de preto para vermelho (como as máquinas de cassino) */
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+    padding: 5px 50px;
+    z-index: 1000;
+    width: 90%;
+    max-width: 900px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo img {
+    max-height: 100px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+header .btn {
+    font-family: 'agdasima';
+    letter-spacing: 1.5px;
+    background-color: #ffcc00;
+    border: none;
+    font-size: 16px;
+    padding: 10px 30px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header .btn:hover {
+    border: 2px solid #3b1d56;
+    background-color: #3b1d5685;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+}
+
+/* Main Dashboard */
+.dashboard {
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.user-info {
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
+
+.user-info h1 {
+    font-family: 'belanosima';
+    font-size: 50px;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    color: #ffcc00;
+}
+
+.user-info p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.account-btn {
+    font-family: 'agdasima';
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background-color: #ffcc00;
+    border: none;
+    max-width: fit-content;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 30px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.account-btn:hover {
+    color: #fff;
+    border: 2px solid #006400;
+    background-color: #00640065;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+}
+
+/* Games Section */
+.games {
+    padding: 20px 10px 70px;
+}
+
+.games h2 {
+    font-family: 'belanosima';
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: #ffcc00;
+}
+
+.game-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1010px;
+    margin: 0 auto;
+}
+
+/* Efeito de flutuação */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Sobe levemente */
+    }
+}
+
+/* Aplicar nos cards */
+.game-card {
+    background: #440000;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 250px;
+    min-height: 340px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s, background 0.3s;
+    border: 2px solid #ffcc00;
+    animation: float 2s infinite ease-in-out;
+    /* transition: transform 0.3s, box-shadow 0.3s; */
+
+    img {
+        width: 130px;
+    }
+}
+
+.game-card:hover {
+    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.8);
+}
+
+
+.game-card h3 {
+    font-family: 'belanosima';
+    font-size: 28px;
+    color: #ffcc00;
+}
+
+.game-card p {
+    font-size: 20px;
+}
+
+.play-btn {
+    font-size: 20px;
+    background-color: #ffcc00;
+    border: none;
+    padding: 10px 30px;
+    color: #440000;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.play-btn:hover {
+    color: #fff;
+    background-color: #ffcc003d;
+    border: 2px solid #ffcc00;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+}
+
+h1 {
+    color: goldenrod;
+    font-size: 60px;
+}
+
+#message-el {
+    font-style: italic;
+}
+.start-btn {
+    font-size: 20px;
+    background-color: #d40000;
+    border: none;
+    padding: 10px 30px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.start-btn:hover {
+    color: #fff;
+    background-color: #d400003d;
+    border: 2px solid #d40000;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+}
+.newcard-btn {
+    font-size: 20px;
+    background-color: #d40000;
+    border: none;
+    padding: 10px 30px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.newcard-btn:hover {
+    color: #fff;
+    background-color: #ff0000;
+    border: 2px solid #4b0707;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+}

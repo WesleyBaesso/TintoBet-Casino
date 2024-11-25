@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TintoBet</title>
+    <link rel="stylesheet" href="css/blackjack.css">
+    <link rel="manifest" href="manifest/manifest.json">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="/public/index.html"><img src="images/Tinto_Bet-removebg-preview.png" alt="Tinto Bet Logo"></a>
+            </div>
+                
+            <nav>
+                <a class="btn login-btn">Paint Drops</a>
+                <a class="btn signup-btn">Account</a>
+                <a class="btn signup-btn">Profit</a>
+            </nav>
+        </div>
+    </header>
+        
+    <main>
+        <section class="dashboard">
+            <div class="user-info">
+                <h1>Blackjack</h1>
+            </div>
+            <div class="games">
+                <h2 id="message-el">Want to play a round?</h2>
+                <p id="cards-el">Cards:</p>
+                <p id="sum-el">Sum:</p>
+                <a class="start-btn" onclick="startGame()">START GAME</a>
+                <a class="newcard-btn" onclick="newCard()">NEW CARD</a>
+                <p id="player-el"></p>
+            </div>
+        </section>
+    </main>
+        
+        <script src="/public/js/blackjack.js"></script>
+    </body>
+</html>
