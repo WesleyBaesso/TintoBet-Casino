@@ -169,6 +169,7 @@ header .btn:hover {
 .account-btn {
     font-family: 'agdasima';
     text-transform: uppercase;
+    text-decoration: none;
     letter-spacing: 1.5px;
     background-color: #ffcc00;
     border: none;
@@ -212,7 +213,7 @@ header .btn:hover {
 
 #slot {
     background: radial-gradient(circle, #3b1d56, #000000); /* Vermelho e preto gradiente */
-    color: #ffcc00; /* Texto dourado */
+    color: #fff; /* Texto dourado */
 }
 
 #blackjack {
@@ -277,6 +278,8 @@ header .btn:hover {
     background-color: #ffcc00;
     border: none;
     padding: 10px 30px;
+    text-decoration: none;
+    font-family: 'belanosima';
     color: #440000;
     font-weight: bold;
     border-radius: 5px;
@@ -291,4 +294,3 @@ header .btn:hover {
     transform: scale(1.1);
     box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
 }
-
