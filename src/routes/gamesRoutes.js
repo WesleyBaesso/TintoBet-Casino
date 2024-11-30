@@ -11,4 +11,8 @@ router.post('/', (req, res) => {
   res.status(201).json({ message: 'Game created!' });
 });
 
+router.get('/blackjack', (req, res) => {
+  res.status(200).json({ message: 'Games endpoint is working!' });
+});
+
 module.exports = router;
