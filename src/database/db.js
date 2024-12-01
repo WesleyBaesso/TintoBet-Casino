@@ -86,6 +86,25 @@ const initializeDatabase = () => {
             console.log('SlotMachine games table is ready.');
         }
     });
+
+    // Crash games table
+    db.run(`
+        CREATE TABLE IF NOT EXISTS crash_games (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            bet INTEGER NOT NULL, -- The amount the user bet on the game
+            result TEXT NOT NULL, -- The result of the game (WIN, LOSS, DRAW)
+            win_loss_amount INTEGER NOT NULL,  -- The amount won or lost in the game
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY(user_id) REFERENCES users(id)
+        )
+    `, (err) => {
+        if (err) {
+            console.error('Error creating crash_games table:', err.message);
+        } else {
+            console.log('Crash games table is ready.');
+        }
+    });
 };
 
 // Export the database connection to be used in other parts of the application

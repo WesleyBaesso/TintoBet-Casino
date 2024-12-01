@@ -1,18 +1,11 @@
 const express = require('express');
+const auth = require('../middlewares/auth');
+const gamesController = require('../controllers/gamesController');
+
 const router = express.Router();
 
-// Placeholder route for getting all games
-router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Games endpoint is working!' });
-});
-
-// Placeholder route for creating a new game
-router.post('/', (req, res) => {
-  res.status(201).json({ message: 'Game created!' });
-});
-
-router.get('/blackjack', (req, res) => {
-  res.status(200).json({ message: 'Games endpoint is working!' });
-});
+router.get('/blackjack', auth, gamesController.blackjack);
+router.get('/roulette', auth, gamesController.roulette);
+router.get('/slot-machine', auth, gamesController.slotMachine);
 
 module.exports = router;
