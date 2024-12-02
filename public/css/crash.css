@@ -73,7 +73,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background: radial-gradient(circle, #006400, #000000); /* Gradiente de preto para vermelho (como as máquinas de cassino) */
+    background: radial-gradient(circle, #640000, #2b0202);
     color: #fff;
     margin: 0;
 }
@@ -84,7 +84,7 @@ header {
     top: 2%;
     left: 50%;
     transform: translateX(-50%);
-    background: radial-gradient(circle, #006400, #063506); /* Gradiente de preto para vermelho (como as máquinas de cassino) */
+    background: radial-gradient(circle, #640000, #2b0202);
     border-radius: 20px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
     padding: 5px 50px;
@@ -148,7 +148,7 @@ header .btn:hover {
     font-family: 'belanosima';
     font-size: 50px;
     letter-spacing: 1px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 30px;
     color: #ffcc00;
 }
 
@@ -255,7 +255,7 @@ header .btn:hover {
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
 .play-btn:hover {
@@ -267,7 +267,7 @@ header .btn:hover {
 }
 
 h1 {
-    color: goldenrod;
+    color: #ffcc00;
     font-size: 60px;
 }
 
@@ -288,60 +288,70 @@ h1 {
     justify-content: center;
 }
 
-h1 {
-    color: goldenrod;
+h2 {
+    color: #ffcc00;
     font-size: 60px;
 }
 
-.bet-section {
-    margin-bottom: 20px;
-}
-
-input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:disabled {
-    background-color: #ccc;
-}
-
-button:hover:not(:disabled) {
-    background-color: #45a049;
-}
-
 .game-info {
-    margin: 20px 0;
+    color: #640000;
+}
+.bet-section {
+    margin-bottom: 1rem;
+    display: grid;
+    gap: 20px;
+    justify-items: center;
 }
 
-.actions {
-    margin-top: 20px;
+.bet-section input {
+    width: 150px;
+    padding: 0.5rem;
 }
 
-.result {
-    margin-top: 20px;
+#start-button {
+    font-size: 20px;
+    background-color: #45a049;
+    border: 2px solid #45a049;
+    padding: 10px 20px;
+    color: #fff;
     font-weight: bold;
-    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+    
+#start-button:hover {
+    color: #fff;
+    background-color: #45a049a1;
+    border: 2px solid #45a049;
+    box-shadow: 0 0 20px rgba(0, 255, 51, 0.8);
+}
+
+.actions button {
+    font-size: 16px;
+    background-color: #858585;
+    border: 2px solid #858585;
+    padding: 5px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.actions button:hover {
+    font-size: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #45a049a1;
+    border: 2px solid #45a049;
+    box-shadow: 0 0 20px rgba(0, 255, 51, 0.8);
+}
+.result {
+    margin-top: 1rem;
+    font-size: 1.2rem;
 }
 
 canvas {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
+    margin-top: 1.5rem;
 }

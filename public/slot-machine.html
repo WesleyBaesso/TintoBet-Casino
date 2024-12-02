@@ -7,18 +7,37 @@
   <link rel="stylesheet" href="css/slot-machine.css">
 </head>
 <body>
-  <div class="slot-machine">
-    <div class="reel" id="reel1">
-      <div class="emoji">🍒</div>
+  <header>
+    <div class="header-container">
+        <div class="logo">
+            <a href="/public/index.html"><img src="images/Tinto_Bet-removebg-preview.png" alt="Tinto Bet Logo"></a>
+        </div>
+                    
+        <nav>
+            <a class="btn login-btn" href="/public/login.html">Paint Drops</a>
+            <a class="btn signup-btn">Account</a>
+            <a class="btn signup-btn">Profit</a>
+        </nav>
     </div>
-    <div class="reel" id="reel2">
-      <div class="emoji">🍉</div>
-    </div>
-    <div class="reel" id="reel3">
-      <div class="emoji">🍊</div>
-    </div>
-  </div>
-  <button onclick="spin()">Girar</button>
+</header>
+    
+<main>
+    <section class="dashboard">
+        <div class="user-info">
+            <h1>Blackjack</h1>
+        </div>
+        <div class="slot-machine">
+          <div class="reel" id="reel1">
+            <div class="emoji">🍒</div>
+          </div>
+          <div class="reel" id="reel2">
+            <div class="emoji">🍉</div>
+          </div>
+          <div class="reel" id="reel3">
+            <div class="emoji">🍊</div>
+          </div>
+        </div>
+        <button onclick="spin()">Girar</button>
 
   <script src="js/slotMachine.js"></script>
 </body>
