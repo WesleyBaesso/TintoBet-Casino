@@ -24,14 +24,12 @@
             </div>
             <form id="login-form">
                 <div class="full-box">
-                    <label for="email">E-mail:</label>
-                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" data-min-length="2"
-                        data-email-validate>
+                    <label for="username">Usuário:</label>
+                    <input type="text" name="username" id="username" placeholder="Digite seu nome de usuário" required>
                 </div>
                 <div class="full-box">
                     <label for="password">Senha:</label>
-                    <input type="password" name="passconfirmation" id="passconfirmation"
-                        placeholder="Confirme sua Senha" data-password-validate data-required>
+                    <input type="password" name="password" id="password" placeholder="Digite sua senha" required>
                 </div>
                 <div class="half-box">
                     <p><a href="#">Esqueci Minha Senha</a></p>
@@ -43,7 +41,7 @@
         </div>
     </div>
 
-    <!-- Modal de Matrícula -->
+    <!-- Modal de Registro -->
     <div id="registrationModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -52,47 +50,20 @@
             </div>
             <form id="registration-form">
                 <div class="full-box">
-                    <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email" placeholder="Digite seu e-mail" data-min-length="2"
-                        data-email-validate>
+                    <label for="username">Usuário:</label>
+                    <input type="text" name="username" id="username" placeholder="Digite seu nome de usuário" required>
                 </div>
                 <div class="half-box">
-                    <label for="name">Nome</label>
-                    <input type="text" name="name" id="name" placeholder="Digite seu nome" data-required
-                        data-min-length="3" data-max-length="16">
+                    <label for="password">Senha:</label>
+                    <input type="password" name="password" id="password" placeholder="Digite sua senha" required>
                 </div>
                 <div class="half-box">
-                    <label for="lastname">Sobrenome</label>
-                    <input type="text" name="lastname" id="lastname" placeholder="Digite seu sobrenome" data-required
-                        data-only-letters>
-                </div>
-                <div class="half-box">
-                    <label for="tel">Telefone:</label>
-                    <input type="tel" name="tel" id="name" placeholder="Confirme seu Telefone" data-min-length="9"
-                        data-max-length="15">
-                </div>
-                <div class="half-box">
-                    <label for="idade">Idade:</label>
-                    <input type="text" list="idade" placeholder="Selecione sua Idade" data-required>
-                    <datalist id="idade">
-                        <option value="10 a 18 anos"></option>
-                        <option value="18 a 30 anos"></option>
-                        <option value="30 a 60 anos"></option>
-                        <option value="Acima de 60 anos"></option>
-                    </datalist>
-                </div>
-                <div class="half-box">
-                    <label for="password">Senha</label>
-                    <input type="password" name="password" id="password" placeholder="Digite sua senha"
-                        data-password-validate data-required>
-                </div>
-                <div class="half-box">
-                    <label for="passconfirmation">Confirmação de senha</label>
-                    <input type="password" name="passconfirmation" id="passwordconfirmation"
-                        placeholder="Digite novamente sua senha" data-equal="password">
+                    <label for="passwordConfirmation">Confirmação de senha:</label>
+                    <input type="password" name="passwordConfirmation" id="passwordConfirmation"
+                        placeholder="Confirme sua senha" required>
                 </div>
                 <div>
-                    <input type="checkbox" name="agreement" id="agreement">
+                    <input type="checkbox" name="agreement" id="agreement" required>
                     <label for="agreement">Eu li e aceito os <a href="#">Termos de Privacidade</a></label>
                 </div>
                 <div class="full-box">

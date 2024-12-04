@@ -1,16 +1,4 @@
-// src/models/userModel.js
 const db = require('../database/db');  // Database connection
-
-// Function to get user data
-const getUserByUsername = (username, callback) => {
-    db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
-        if (err) {
-            callback(err, null);
-        } else {
-            callback(null, row);
-        }
-    });
-};
 
 // Function to update the user's balance
 const updateBalance = (username, newBalance, callback) => {
@@ -23,4 +11,4 @@ const updateBalance = (username, newBalance, callback) => {
     });
 };
 
-module.exports = { getUserByUsername, updateBalance };
+module.exports = { updateBalance };
