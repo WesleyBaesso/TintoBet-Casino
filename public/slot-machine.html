@@ -3,42 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Máquina de Caça-Níquel</title>
-  <link rel="stylesheet" href="css/slot-machine.css">
+  <title>Máquina Caça-Níquel</title>
+  <link rel="stylesheet" href="./css/slot-machine.css">
 </head>
 <body>
-  <header>
-    <div class="header-container">
-        <div class="logo">
-            <a href="/public/index.html"><img src="images/Tinto_Bet-removebg-preview.png" alt="Tinto Bet Logo"></a>
+  <div id="app">
+    <div class="slot-machine">
+      <div class="doors">
+        <div class="door">
+          <div class="boxes"></div>
         </div>
-                    
-        <nav>
-            <a class="btn login-btn" href="/public/login.html">Paint Drops</a>
-            <a class="btn signup-btn">Account</a>
-            <a class="btn signup-btn">Profit</a>
-        </nav>
-    </div>
-</header>
-    
-<main>
-    <section class="dashboard">
-        <div class="user-info">
-            <h1>Blackjack</h1>
+        <div class="door">
+          <div class="boxes"></div>
         </div>
-        <div class="slot-machine">
-          <div class="reel" id="reel1">
-            <div class="emoji">🍒</div>
-          </div>
-          <div class="reel" id="reel2">
-            <div class="emoji">🍉</div>
-          </div>
-          <div class="reel" id="reel3">
-            <div class="emoji">🍊</div>
-          </div>
+        <div class="door">
+          <div class="boxes"></div>
         </div>
-        <button onclick="spin()">Girar</button>
+      </div>
 
-  <script src="js/slotMachine.js"></script>
+      <div class="buttons">
+        <button id="lever">Girar</button>
+      </div>
+
+      <div class="bet">
+        <input type="number" id="betAmount" placeholder="Valor da Aposta (Multiplicador)" min="1" value="1">
+      </div>
+
+      <div class="saldo">
+        <input type="number" id="initialBalance" placeholder="Valor do Saldo Inicial" min="1" value="0">
+        <button id="setBalance">Definir Saldo Inicial</button>
+        <h3>Saldo: <span id="saldo">0</span> 💰</h3>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/slotMachine.js"></script>
 </body>
 </html>
