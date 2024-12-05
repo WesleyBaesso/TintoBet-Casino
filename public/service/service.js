@@ -21,7 +21,7 @@ export async function loginUser(credentials) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(credentials),
         });
-        return await response.json();
+        return response
     } catch (error) {
         console.error('Error during login:', error);
         throw error;
@@ -30,10 +30,10 @@ export async function loginUser(credentials) {
 
 
 // Function to fetch the URL for the game page
-export async function fetchGamePage(gameType) {
+export async function fetchPage(pageName) {
     try {
         // Make an API call or fetch the game page route from the server
-        const response = await fetch(`/games/${gameType}`);
+        const response = await fetch(`/${pageName}`);
         
         if (!response.ok) {
             throw new Error('Page not found');

@@ -71,9 +71,17 @@ document.getElementById('login-form').addEventListener('submit', async function 
 
     try {
         const response = await loginUser({ username: loginUsername, password: loginPassword });
+
+        if (response.status !== 200) { // Check the status code
+            const errorData = await response.json(); // Get error details from the server
+            throw new Error(errorData.message || 'Invalid credentials'); // Use server-provided message if available
+        }
+        
+        // Proceed with successful login logic
         alert('Login realizado com sucesso!');
         console.log('Login successful:', response);
         window.location.href = '/index.html'; // Redirect to the main page
+        
     } catch (error) {
         alert('Erro ao fazer login. Por favor, verifique seu usuário e senha.');
         console.error('Login error:', error);

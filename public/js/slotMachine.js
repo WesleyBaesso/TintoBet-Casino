@@ -1,6 +1,9 @@
 (function () {
   const items = [
-    '🍎', '🍌', '🍒', '🍉', // 4 emojis
+    'images/paleta-de-cores.png', // Caminho para a imagem de maçã
+    'images/pincel.png', // Caminho para a imagem de banana
+    'images/tinta-de-rolo.png', // Caminho para a imagem de cereja
+    'images/balde-de-tinta.png', // Caminho para a imagem de melancia
   ];
 
   const doors = document.querySelectorAll('.door');
@@ -11,6 +14,9 @@
   const setBalanceButton = document.querySelector('#setBalance');
 
   let saldo = 0; // Saldo inicial do jogador
+
+  // Seleciona o elemento com a classe 'slot-machine'
+  const slotMachine = document.querySelector('.slot-machine');
 
   // Atualiza o saldo na tela
   function updateSaldo() {
@@ -35,15 +41,15 @@
     for (const door of doors) {
       const boxes = door.querySelector('.boxes');
       const boxesClone = boxes.cloneNode(false);
-      const pool = ['❓'];
+      const pool = ['images/ponto-de-interrogacao.png'];
 
       if (!firstInit) {
-        const arr = [...items]; // Usando somente os 4 emojis
+        const arr = [...items]; // Usando somente as imagens
         pool.push(...shuffle(arr));
 
         boxesClone.addEventListener('transitionstart', function () {
           this.querySelectorAll('.box').forEach((box) => {
-            box.style.filter = 'blur(1px)';
+            box.style.filter = 'blur()';
           });
         }, { once: true });
 
@@ -60,7 +66,14 @@
         box.classList.add('box');
         box.style.width = door.clientWidth + 'px';
         box.style.height = door.clientHeight + 'px';
-        box.textContent = pool[i];
+
+        // Criando um elemento de imagem
+        const img = document.createElement('img');
+        img.src = pool[i]; // Atribui o caminho da imagem ao 'src'
+        img.style.width = '60%';
+        img.style.height = '50%';
+
+        box.appendChild(img);
         boxesClone.appendChild(box);
       }
 
@@ -91,11 +104,11 @@
       boxes.style.transform = 'translateY(0)';
       await new Promise((resolve) => setTimeout(resolve, duration * 100));
 
-      const result = boxes.querySelector('.box').textContent;
+      const result = boxes.querySelector('.box img').src; // Obtém o caminho da imagem
       doorResults.push(result); // Armazena o resultado de cada porta
     }
 
-    // Verifica se todos os emojis são iguais
+    // Verifica se todas as imagens são iguais
     if (doorResults[0] === doorResults[1] && doorResults[0] === doorResults[2]) {
       // O jogador ganhou! O valor da aposta será multiplicado por 10
       const prize = betAmount * 10;
@@ -104,29 +117,29 @@
 
       alert(`Você ganhou! +${prize} 💵.`);
       
-      // Muda o fundo para verde (vitória)
-      document.body.style.backgroundColor = 'rgb(85, 239, 196)'; // Cor verde clara (sucesso)
+      // Muda o fundo da slot-machine para verde (vitória)
+      slotMachine.style.backgroundColor = 'rgb(85, 239, 196)'; // Cor verde clara (sucesso)
 
       // Reseta a cor do fundo após 2 segundos
       setTimeout(() => {
-        document.body.style.backgroundColor = '#1a2b45'; // Cor de fundo original
+        slotMachine.style.backgroundColor = ''; // Reseta para o fundo original
       }, 2000);
 
     } else {
       // O jogador perdeu.
       alert("Você perdeu! Tente novamente.");
       
-      // Muda o fundo para vermelho (erro)
-      document.body.style.backgroundColor = 'rgb(255, 99, 71)'; // Cor vermelha (erro)
+      // Muda o fundo da slot-machine para vermelho (erro)
+      slotMachine.style.backgroundColor = 'rgb(255, 99, 71)'; // Cor vermelha (erro)
 
       // Reseta a cor do fundo após 2 segundos
       setTimeout(() => {
-        document.body.style.backgroundColor = '#1a2b45'; // Cor de fundo original
+        slotMachine.style.backgroundColor = ''; // Reseta para o fundo original
       }, 2000);
     }
   }
 
-  // Função para embaralhar os emojis
+  // Função para embaralhar as imagens
   function shuffle(arr) {
     let m = arr.length;
     while (m) {

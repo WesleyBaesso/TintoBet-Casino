@@ -1,4 +1,4 @@
-import { fetchGamePage } from "../service/service.js";
+import { fetchPage } from "../service/service.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     // Attach click event listeners to all game buttons
@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     gameButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const gameType = this.getAttribute('data-game');
-            redirectToGame(gameType);
+            const pageName = this.getAttribute('data-game');
+            redirectToPage(pageName);
         });
     });
 });
 
 // Redirect to the game's page by calling the service.js function
-function redirectToGame(gameType) {
-    fetchGamePage(gameType)
+function redirectToPage(pageName) {
+    fetchPage(pageName)
         .then(url => {
             // Redirect the user to the specific game page
             window.location.href = url;

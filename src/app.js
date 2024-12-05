@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const gamesRoutes = require('./routes/api/gamesRoutes');
 const userRoutes = require('./routes/api/userRoutes');
-const gamesPagesRoutes = require('./routes/gamesPagesRoutes');
+const pagesRoutes = require('./routes/pagesRoutes');
 const auth = require('./middlewares/authMiddleware');
 
 app.use(session({
@@ -35,7 +35,7 @@ app.get('/login.html', (req, res) => {
 // Apply auth middleware selectively only on routes that require authentication
 app.use('/api/games', auth, gamesRoutes);  // Games-related actions require authentication
 app.use('/api/users', userRoutes);   // User-related actions require authentication
-app.use('/games', auth, gamesPagesRoutes); // Games pages require authentication
+app.use('/', auth, pagesRoutes); // Pages require authentication
 
 // Catch-all for handling 404s
 app.all('*', (req, res) => {
