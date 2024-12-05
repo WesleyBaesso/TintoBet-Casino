@@ -1,11 +1,9 @@
-// gamesController.js
-
 const blackjackController = require('./blackjackController');
-const rouletteController = require('./rouletteController');
+const crashController = require('./crashController');
 const slotsController = require('./slotsController');
 
 const handleGameRequest = async (req, res) => {
-    const { gameType } = req.params; // e.g., 'blackjack', 'roulette', 'slots'
+    const { gameType } = req.params; 
     const { userId, bet } = req.body;
 
     try {
@@ -15,7 +13,7 @@ const handleGameRequest = async (req, res) => {
                 result = await blackjackController.playGame(userId, bet);
                 break;
             case 'roulette':
-                result = await rouletteController.playGame(userId, bet);
+                result = await crashController.playGame(userId, bet);
                 break;
             case 'slots':
                 result = await slotsController.playGame(userId, bet);

@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulários</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
 
-    <!-- Botões para abrir os modais -->
+    <!-- Buttons to open modals -->
     <button id="openLoginModalBtn">Entrar</button>
     <button id="openRegistrationModalBtn">Cadastre-se</button>
 
-    <!-- Modal de Login -->
+    <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,12 +24,12 @@
             </div>
             <form id="login-form">
                 <div class="full-box">
-                    <label for="username">Usuário:</label>
-                    <input type="text" name="username" id="username" placeholder="Digite seu nome de usuário" required>
+                    <label for="login-username">Usuário:</label>
+                    <input type="text" name="username" id="login-username" placeholder="Digite seu nome de usuário" required>
                 </div>
                 <div class="full-box">
-                    <label for="password">Senha:</label>
-                    <input type="password" name="password" id="password" placeholder="Digite sua senha" required>
+                    <label for="login-password">Senha:</label>
+                    <input type="password" name="password" id="login-password" placeholder="Digite sua senha" required>
                 </div>
                 <div class="half-box">
                     <p><a href="#">Esqueci Minha Senha</a></p>
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <!-- Modal de Registro -->
+    <!-- Registration Modal -->
     <div id="registrationModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,17 +50,16 @@
             </div>
             <form id="registration-form">
                 <div class="full-box">
-                    <label for="username">Usuário:</label>
-                    <input type="text" name="username" id="username" placeholder="Digite seu nome de usuário" required>
+                    <label for="registration-username">Usuário:</label>
+                    <input type="text" name="username" id="registration-username" placeholder="Digite seu nome de usuário" required>
                 </div>
                 <div class="half-box">
-                    <label for="password">Senha:</label>
-                    <input type="password" name="password" id="password" placeholder="Digite sua senha" required>
+                    <label for="registration-password">Senha:</label>
+                    <input type="password" name="password" id="registration-password" placeholder="Digite sua senha" required>
                 </div>
                 <div class="half-box">
                     <label for="passwordConfirmation">Confirmação de senha:</label>
-                    <input type="password" name="passwordConfirmation" id="passwordConfirmation"
-                        placeholder="Confirme sua senha" required>
+                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirme sua senha" required>
                 </div>
                 <div>
                     <input type="checkbox" name="agreement" id="agreement" required>
@@ -73,7 +72,9 @@
         </div>
     </div>
 
-    <script src="js/login.js"></script>
+    <!-- Import the login.js script as a module -->
+    <script type="module" src="js/login.js"></script>
+
 </body>
 
 </html>

@@ -1,46 +1,48 @@
-// service.js
-const API_BASE_URL = 'http://localhost:3000/api/users'; // Replace with your actual API base URL
-
-// Function to register a user
-export const registerUser = async (userData) => {
+// Function to register a new user
+export async function registerUser(userData) {
     try {
-        const response = await fetch(`${API_BASE_URL}/register`, {
+        const response = await fetch('http://localhost:3000/api/users/register', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData),
         });
-
-        if (!response.ok) {
-            throw new Error(`Failed to register: ${response.statusText}`);
-        }
-
         return await response.json();
     } catch (error) {
-        console.error('Error in registerUser:', error);
+        console.error('Error during registration:', error);
         throw error;
     }
-};
+}
 
-// Function to login a user
-export const loginUser = async (credentials) => {
+// Function to log in a user
+export async function loginUser(credentials) {
     try {
-        const response = await fetch(`${API_BASE_URL}/login`, {
+        const response = await fetch('http://localhost:3000/api/users/login', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(credentials),
         });
-
-        if (!response.ok) {
-            throw new Error(`Failed to login: ${response.statusText}`);
-        }
-
         return await response.json();
     } catch (error) {
-        console.error('Error in loginUser:', error);
+        console.error('Error during login:', error);
         throw error;
     }
-};
+}
+
+
+// Function to fetch the URL for the game page
+export async function fetchGamePage(gameType) {
+    try {
+        // Make an API call or fetch the game page route from the server
+        const response = await fetch(`/games/${gameType}`);
+        
+        if (!response.ok) {
+            throw new Error('Page not found');
+        }
+
+        // Assuming the server returns the game page URL
+        return response.url;
+    } catch (error) {
+        console.error('Error fetching game page:', error);
+        throw error;
+    }
+}

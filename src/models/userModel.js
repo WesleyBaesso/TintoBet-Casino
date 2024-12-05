@@ -7,7 +7,16 @@ const registerUser = async (username, password) => {
 
 const findUserByUsername = async (username) => {
     const query = 'SELECT * FROM users WHERE username = ?';
-    return db.get(query, [username]);
+    return new Promise((resolve, reject) => {
+        db.get(query, [username], (err, row) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(row);
+            }
+        });
+    });
 };
+
 
 module.exports = { registerUser, findUserByUsername };

@@ -1,4 +1,4 @@
-import { registerUser, loginUser } from './service.js';
+import { registerUser, loginUser } from '../service/service.js';
 
 // Modal logic for Login
 const loginModal = document.getElementById("loginModal");
@@ -40,26 +40,22 @@ window.addEventListener("click", function (event) {
 
 // Handle Registration Form Submission
 document.getElementById('registration-form').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const registrationUsername = document.getElementById('registration-username').value;
+    const registrationPassword = document.getElementById('registration-password').value;
     const passwordConfirmation = document.getElementById('passwordConfirmation').value;
 
-    // Check if passwords match
-    if (password !== passwordConfirmation) {
+    if (registrationPassword !== passwordConfirmation) {
         alert('As senhas não coincidem. Por favor, tente novamente.');
         return;
     }
 
     try {
-        // Call the service to register the user
-        const response = await registerUser({ username, password });
+        const response = await registerUser({ username: registrationUsername, password: registrationPassword });
         alert('Usuário registrado com sucesso!');
         console.log('Registration successful:', response);
-
-        // Optionally, redirect to the login page after successful registration
-        window.location.href = '/login.html'; 
+        window.location.href = '/index.html'; // Redirect to the login page
     } catch (error) {
         alert('Erro ao registrar usuário. Por favor, tente novamente.');
         console.error('Registration error:', error);
@@ -68,19 +64,16 @@ document.getElementById('registration-form').addEventListener('submit', async fu
 
 // Handle Login Form Submission
 document.getElementById('login-form').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const loginUsername = document.getElementById('login-username').value;
+    const loginPassword = document.getElementById('login-password').value;
 
     try {
-        // Call the service to log the user in
-        const response = await loginUser({ username, password });
+        const response = await loginUser({ username: loginUsername, password: loginPassword });
         alert('Login realizado com sucesso!');
         console.log('Login successful:', response);
-
-        // Optionally, redirect to a dashboard or home page after successful login
-        window.location.href = '/dashboard.html'; // Redirect to the main page or dashboard
+        window.location.href = '/index.html'; // Redirect to the main page
     } catch (error) {
         alert('Erro ao fazer login. Por favor, verifique seu usuário e senha.');
         console.error('Login error:', error);
