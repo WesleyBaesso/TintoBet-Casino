@@ -1,30 +1,26 @@
-// server.js or wherever your routes are handled
+import { fetchGamePage } from "../service/service.js";
 
-const express = require('express');
-const db = require('./database/db.js');  // Your database connection file
-const app = express();
-app.use(express.json());
-
-// Route to authenticate user and send user data (for example)
-app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
+document.addEventListener('DOMContentLoaded', () => {
+    // Attach click event listeners to all game buttons
+    const gameButtons = document.querySelectorAll('.play-btn');
     
-    // Check the user credentials (assuming you have password hashing in place)
-    const query = `SELECT id, username, paint_drops FROM users WHERE username = ? AND password = ?`;
-    
-    db.get(query, [username, password], (err, row) => {
-        if (err) {
-            return res.status(500).json({ error: 'Error querying the database' });
-        }
-        if (row) {
-            // If user is found, send back the user data (username and paint_drops)
-            return res.json({
-                username: row.username,
-                paintDrops: row.paint_drops
-            });
-        } else {
-            return res.status(401).json({ error: 'Invalid credentials' });
-        }
+    gameButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const gameType = this.getAttribute('data-game');
+            redirectToGame(gameType);
+        });
     });
 });
 
+// Redirect to the game's page by calling the service.js function
+function redirectToGame(gameType) {
+    fetchGamePage(gameType)
+        .then(url => {
+            // Redirect the user to the specific game page
+            window.location.href = url;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Game not found!');
+        });
+}

@@ -1,51 +1,58 @@
-### **TO-DO**
- - Audio
-   
 ### **PROJECT FOLDER STRUCTURE**
 ```
-virtual-casino/
+tintobet-casino/
+├── documentation/                      # Documentation for the project
 ├── node_modules/                       # Dependencies installed via npm
-├── public/                             # Static assets
+├── public/                             # Static assets for the project
 │   ├── css/                            # Stylesheets
-│   │   ├── blackjack.css               # Style for blackjack game (blackjack.html)
-│   │   ├── roulette.css                # Style for roulette game (roulette.html)
-│   │   ├── slot-machine.css             # Style for slot machine game (slotMachine.html)
-│   │   └── styles.css                  # Style for main page (index.html)
-│   ├── images/                         # Folder for casino-related images
+│   │   ├── blackjack.css               # Style for the Blackjack game
+│   │   ├── crash.css                   # Style for the Crash game
+│   │   ├── login.css                   # Style for the Login page
+│   │   ├── slot-machine.css            # Style for the Slot Machine game
+│   │   └── styles.css                  # General styles for the project
+│   ├── fonts/                          # Fonts for the application
+│   ├── images/                         # Images used in the application
 │   ├── js/                             # Frontend JavaScript files
-│   │   ├── blackjack.js                # Script to display information of the blackjack game
-│   │   ├── roulette.js                 # Script to display information of the roulette game
-│   │   ├── script.js                   # Script to display information of the main page
-│   │   └── slotMachine.js             # Script to display information of the slot machine game
-│   ├── blackjack.html                  # Blackjack game page 
-│   ├── index.html                      # Casino main page 
-│   ├── login.html                      # Login page 
-│   ├── roulette.html                   # Roulette game page
-│   └── slot-machine.html                # Slot Machine game page
+│   │   ├── blackjack.js                # Script for the Blackjack game
+│   │   ├── cards.js                    # Utility for card-related functions
+│   │   ├── crash.js                    # Script for the Crash game
+│   │   ├── login.js                    # Script for the Login page
+│   │   ├── script.js                   # Main page script
+│   │   └── slotMachine.js              # Script for the Slot Machine game
+│   ├── service/                        # Service worker files
+│   │   └── service.js                  # Service worker script
+│   ├── blackjack.html                  # Blackjack game page
+│   ├── crash.html                      # Crash game page
+│   ├── index.html                      # Main page of the casino
+│   ├── login.html                      # Login page
+│   └── slot-machine.html               # Slot Machine game page
 ├── src/                                # Source code for the application
-│   ├── controllers/                    # Controllers for handling logic
-│   │   ├── gamesController.js          # Processes the requests from the games and calls the functions on the models
-│   │   ├── blackjackController.js      # BlackJack game logic
-│   │   ├── slotsController.js          # Slots Machine game logic
-│   │   ├── rouletteController.js       # Roulette game logic
-│   │   └── userController.js           # User related operations (login, register, updating paint drops)
-│   ├── database/                       # SQLite database and related files
-│   │   ├── db.js                       # SQLite connection and setup
-│   │   └── casino.sqlite               # SQLite database file
-│   ├── models/                         # Models for database queries
+│   ├── controllers/                    # Controllers for handling application logic
+│   │   ├── blackjackController.js      # Logic for Blackjack game
+│   │   ├── crashController.js          # Logic for Crash game
+│   │   ├── gamesController.js          # General game-related logic
+│   │   ├── slotsController.js          # Logic for Slots game
+│   │   └── userController.js           # User-related logic (login, register, etc.)
+│   ├── database/                       # Database connection and files
+│   │   └── db.js                       # Database connection and initialization
+│   ├── middlewares/                    # Middleware for request processing
+│   │   └── authMiddleware.js           # Authentication and authorization logic
+│   ├── models/                         # Models for interacting with the database
 │   │   ├── gamesModel.js               # Games-related database operations
 │   │   └── userModel.js                # User-related database operations
-│   ├── routes/                         # API route definitions
-│   │   ├── gamesRoutes.js              # Games API routes 
-│   │   └── userRoutes.js               # User related API routes
-│   ├── middlewares/                    # Optional middleware (e.g., authentication)
-│   │   └── auth.js                     # Authentication middleware
-│   ├── app.js                          # Express app setup and configuration
-│   └── server.js                       # Entry point for the server
-├── .env                                # Environment variables (e.g., PORT)
-├── .gitignore                          # Ignoring node_modules, database, etc.
+│   ├── routes/                         # Application routes
+│   │   ├── api/                        # API routes for the application
+│   │   │   ├── gamesRoutes.js          # Routes for games API
+│   │   │   ├── userRoutes.js           # Routes for user API
+│   │   │   └── gamesPagesRoutes.js     # Routes for games pages
+│   │   └── app.js                      # Main application routes
+│   └── app.js                          # Express app setup and configuration
+├── .gitignore                          # Ignored files and directories (e.g., node_modules)
+├── package-lock.json                   # Dependency tree lock file
 ├── package.json                        # Project metadata and dependencies
-└── README.md                           # Project description and usage instructions
+├── README.md                           # Project description and usage instructions
+├── server.js                           # Entry point for the server
+└── site.webmanifest                    # Web manifest for the application
 ```
 
 ### **Paint Drop: The Virtual Casino Currency**

@@ -18,8 +18,8 @@ const initializeDatabase = () => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
-            profit INTEGER DEFAULT 0, -- How much paintDrops the user has won
-            paint_drops INTEGER DEFAULT 0, -- The amount of paint drops the user has
+            profit INTEGER DEFAULT 0,
+            paint_drops INTEGER DEFAULT 0,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `, (err) => {
@@ -27,82 +27,6 @@ const initializeDatabase = () => {
             console.error('Error creating users table:', err.message);
         } else {
             console.log('Users table is ready.');
-        }
-    });
-
-    // Blackjack games table
-    db.run(`
-        CREATE TABLE IF NOT EXISTS blackjack_games (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            bet INTEGER NOT NULL, -- The amount the user bet on the game
-            result TEXT NOT NULL, -- The result of the game (WIN, LOSS, DRAW)
-            win_loss_amount INTEGER NOT NULL,  -- The amount won or lost in the game
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(user_id) REFERENCES users(id)
-        )
-    `, (err) => {
-        if (err) {
-            console.error('Error creating blackjack_games table:', err.message);
-        } else {
-            console.log('Blackjack games table is ready.');
-        }
-    });
-
-    // Roulette games table
-    db.run(`
-        CREATE TABLE IF NOT EXISTS roulette_games (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            bet INTEGER NOT NULL, -- The amount the user bet on the game
-            result TEXT NOT NULL, -- The result of the game (WIN, LOSS, DRAW)
-            win_loss_amount INTEGER NOT NULL,  -- The amount won or lost in the game
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(user_id) REFERENCES users(id)
-        )
-    `, (err) => {
-        if (err) {
-            console.error('Error creating roulette_games table:', err.message);
-        } else {
-            console.log('Roulette games table is ready.');
-        }
-    });
-
-    // SlotMachine games table
-    db.run(`
-        CREATE TABLE IF NOT EXISTS slotmachine_games (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            bet INTEGER NOT NULL, -- The amount the user bet on the game
-            result TEXT NOT NULL, -- The result of the game (WIN, LOSS, DRAW)
-            win_loss_amount INTEGER NOT NULL,  -- The amount won or lost in the game
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(user_id) REFERENCES users(id)
-        )
-    `, (err) => {
-        if (err) {
-            console.error('Error creating slotmachine_games table:', err.message);
-        } else {
-            console.log('SlotMachine games table is ready.');
-        }
-    });
-
-    // Crash games table
-    db.run(`
-        CREATE TABLE IF NOT EXISTS crash_games (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            bet INTEGER NOT NULL, -- The amount the user bet on the game
-            result TEXT NOT NULL, -- The result of the game (WIN, LOSS, DRAW)
-            win_loss_amount INTEGER NOT NULL,  -- The amount won or lost in the game
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(user_id) REFERENCES users(id)
-        )
-    `, (err) => {
-        if (err) {
-            console.error('Error creating crash_games table:', err.message);
-        } else {
-            console.log('Crash games table is ready.');
         }
     });
 };

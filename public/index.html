@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="manifest" href="manifest/manifest.json">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <script type="module" src="js/script.js"></script>
 </head>
 <body>
     <header>
@@ -14,7 +15,6 @@
             <div class="logo">
                 <a href="/public//index.html"><img src="images/Tinto_Bet-removebg-preview.png" alt="Tinto Bet Logo"></a>
             </div>
-            
             <nav>
                 <a class="btn login-btn" href="/public/login.html">Paint Drops</a>
                 <a class="btn signup-btn">Account</a>
@@ -37,27 +37,20 @@
                         <h3>Black Jack "21"</h3>
                         <img src="images/baralho-de-cartas.png" alt="">
                         <p>Beat the dealer!</p>
-                        <a href="/public/blackjack.html" class="btn play-btn">Play</a>
+                        <button data-game="blackjack" class="btn play-btn">Play</button> <!-- Updated button -->
                     </div>
                     <div class="game-card" id="crash">
                         <h3>Crash</h3>
                         <img src="images/financial-profit.png" alt="">
                         <p>Place your bets!</p>
-                        <a href="/public/crash.html" class="btn play-btn">Play</a>
+                        <button data-game="crash" class="btn play-btn">Play</button> <!-- Updated button -->
                     </div>
-                    <!-- <div class="game-card" id="roulette">
-                        <h3>Roulette</h3>
-                        <img src="images/roleta-de-cassino.png" alt="">
-                        <p>Place your bets!</p>
-                        <a href="/public/roulette.html" class="btn play-btn">Play</a>
-                    </div> -->
                     <div class="game-card" id="slot">
                         <h3>Slot Machine</h3>
                         <img src="images/slot-machine.png" alt="">
                         <p>Spin to win big!</p>
-                        <a href="/public/slot-machine.html" class="btn play-btn">Play</a>
+                        <button data-game="slot-machine" class="btn play-btn">Play</button> <!-- Updated button -->
                     </div>
-                    
                 </div>
             </div>
         </section>
@@ -65,8 +58,6 @@
     
     <footer>
         <p>© 2024 Tinto Bet Casino. Play responsibly.</p>
-        <iframe src="https://www.youtube.com/embed/PaFHwTjy1yE?si=vM1mvVLJ-zP-kffM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </footer>
-    
 </body>
 </html>
