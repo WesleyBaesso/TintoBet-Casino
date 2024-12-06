@@ -6,10 +6,13 @@ const router = express.Router();
 router.get('/:pageName', (req, res) => {
     const pageName = req.params.pageName;
 
-    // Construct the file path based on the pageName
-    const filePath = path.join(__dirname, '..', '..', 'public', `${pageName}.html`);
+    // Validate pageName to prevent directory traversal attacks
+    const validPages = ['crash', 'blackjack', 'slot-machine']; // Define your valid pages
+    if (!validPages.includes(pageName)) {
+        return res.status(404).send('Page not found');
+    }
 
-    // Send the file if it exists
+    const filePath = path.join(__dirname, '..', '..', 'public', `${pageName}.html`);
     res.sendFile(filePath, (err) => {
         if (err) {
             console.error(err);

@@ -16,7 +16,7 @@ tintobet-casino/
 │   │   ├── blackjack.js                # Script for the Blackjack game
 │   │   ├── cards.js                    # Utility for card-related functions
 │   │   ├── crash.js                    # Script for the Crash game
-│   │   ├── login.js                    # Script for the Login page
+│   │   ├── account.js                    # Script for the Login page
 │   │   ├── script.js                   # Main page script
 │   │   └── slotMachine.js              # Script for the Slot Machine game
 │   ├── service/                        # Service worker files

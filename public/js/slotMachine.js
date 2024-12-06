@@ -1,3 +1,6 @@
+import { fetchPage } from "../service/service.js";
+
+
 (function () {
   const items = [
     'images/paleta-de-cores.png', // Caminho para a imagem de maçã
@@ -151,3 +154,28 @@
 
   init(); // Inicializa a máquina ao carregar a página
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Attach click event listeners to all game buttons
+  const pageRedirects = document.querySelectorAll('.page-redirect');
+  
+  pageRedirects.forEach(button => {
+      button.addEventListener('click', function() {
+          const pageName = this.getAttribute('page-name');
+          redirectToPage(pageName);
+      });
+  });
+});
+
+// Redirect to the game's page by calling the service.js function
+function redirectToPage(pageName) {
+  fetchPage(pageName)
+      .then(url => {
+          // Redirect the user to the specific game page
+          window.location.href = url;
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('Game not found!');
+      });
+}

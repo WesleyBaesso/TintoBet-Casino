@@ -12,6 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Attach click event listeners to all game buttons
+    const pageRedirects = document.querySelectorAll('.page-redirect');
+    
+    pageRedirects.forEach(button => {
+        button.addEventListener('click', function() {
+            const pageName = this.getAttribute('page-name');
+            redirectToPage(pageName);
+        });
+    });
+});
+
 // Redirect to the game's page by calling the service.js function
 function redirectToPage(pageName) {
     fetchPage(pageName)
@@ -24,3 +36,4 @@ function redirectToPage(pageName) {
             alert('Game not found!');
         });
 }
+

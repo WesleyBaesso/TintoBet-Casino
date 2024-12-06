@@ -5,15 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/login.css">
+    <title>Account</title>
+    <link rel="stylesheet" href="/css/account.css">
 </head>
 
 <body>
-
     <!-- Buttons to open modals -->
-    <button id="openLoginModalBtn">Entrar</button>
-    <button id="openRegistrationModalBtn">Cadastre-se</button>
+    <div id="action-buttons">
+        <button id="openLoginModalBtn">Entrar</button>
+        <button id="openRegistrationModalBtn">Cadastre-se</button>
+        <button id="logoutBtn" style="display: none;">Sair</button>
+    </div>
+
+    <!-- Account Information Section -->
+    <div id="accountInfo">
+        <h2>Bem-vindo, <span id="usernameDisplay">Visitante</span></h2>
+        <p>Paint Drops: <span id="creditsDisplay">0</span></p>
+        <div id="creditManagement" style="display: none;">
+            <input type="number" id="creditAmount" placeholder="Adicione créditos" min="1">
+            <button id="addCreditsBtn">Adicionar Créditos</button>
+        </div>
+    </div>
 
     <!-- Login Modal -->
     <div id="loginModal" class="modal">
@@ -72,8 +84,8 @@
         </div>
     </div>
 
-    <!-- Import the login.js script as a module -->
-    <script type="module" src="js/login.js"></script>
+    <!-- Import the script -->
+    <script type="module" src="/js/account.js"></script>
 
 </body>
 

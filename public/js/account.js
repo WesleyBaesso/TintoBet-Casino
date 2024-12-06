@@ -1,6 +1,6 @@
-import { registerUser, loginUser } from '../service/service.js';
+import { registerUser, loginUser, getUserBalance } from '../service/service.js';
 
-// Modal logic for Login
+// Modal logic for Login (unchanged)
 const loginModal = document.getElementById("loginModal");
 const openLoginModalBtn = document.getElementById("openLoginModalBtn");
 const closeLoginModalBtn = document.getElementById("closeLoginModalBtn");
@@ -19,7 +19,7 @@ window.addEventListener("click", function (event) {
     }
 });
 
-// Modal logic for Registration
+// Modal logic for Registration (unchanged)
 const registrationModal = document.getElementById("registrationModal");
 const openRegistrationModalBtn = document.getElementById("openRegistrationModalBtn");
 const closeRegistrationModalBtn = document.getElementById("closeRegistrationModalBtn");
@@ -62,7 +62,7 @@ document.getElementById('registration-form').addEventListener('submit', async fu
     }
 });
 
-// Handle Login Form Submission
+// Handle Login Form Submission (unchanged)
 document.getElementById('login-form').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -87,3 +87,17 @@ document.getElementById('login-form').addEventListener('submit', async function 
         console.error('Login error:', error);
     }
 });
+
+// Fetch user data (unchanged)
+// document.addEventListener('DOMContentLoaded', async () => {
+//     try {
+//         // Fetch user data (username and balance)
+//         const userData = await getUserBalance();
+
+//         // Display username and balance on the page
+//         document.getElementById('usernameDisplay').textContent = `${userData.username}`;
+//         document.getElementById('creditsDisplay').textContent = `${userData.balance}`;
+//     } catch (error) {
+//         console.error('Error loading user data:', error);
+//     }
+// });
