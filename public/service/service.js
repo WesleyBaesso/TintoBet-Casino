@@ -67,7 +67,7 @@ export async function fetchPage(pageName) {
 // Function to get a user balance from the API
 export async function getUserBalance() {
     try {
-        const response = await fetch('http://localhost:3000/api/users/info', {
+        const response = await fetch('http://localhost:3000/api/users/user-info', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'same-origin',  // Ensure cookies (like session) are sent along
@@ -83,6 +83,30 @@ export async function getUserBalance() {
         return data;  // { username, balance }
     } catch (error) {
         console.error('Error during getting user balance:', error);
+        throw error;  // Rethrow error to be handled by the calling function
+    }
+}
+
+// Function to update the user's balance
+export async function updateUserBalance(balanceData) {
+    try {
+        const response = await fetch('http://localhost:3000/api/users/update-user-balance', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(balanceData), // Include the balance data (amount to update)
+            credentials: 'same-origin',  // Ensure cookies (like session) are sent along
+        });
+
+        // If the response is not okay, throw an error
+        if (!response.ok) {
+            throw new Error('Failed to update user balance');
+        }
+
+        // Parse the JSON response to extract the updated user data (like new balance)
+        const data = await response.json();
+        return data;  // The response might include the updated user info or just a success message
+    } catch (error) {
+        console.error('Error during updating user balance:', error);
         throw error;  // Rethrow error to be handled by the calling function
     }
 }

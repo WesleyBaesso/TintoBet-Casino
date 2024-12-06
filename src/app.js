@@ -34,7 +34,7 @@ app.get('/login.html', (req, res) => {
 
 // Apply auth middleware selectively only on routes that require authentication
 app.use('/api/games', auth.authenticateUser, gamesRoutes);  // Games-related actions require authentication
-app.use('/api/users', userRoutes);   // User-related actions require authentication
+app.use('/api/users', auth.attachUserBalanceToResponse, userRoutes);   // User-related actions require authentication
 app.use('/', auth.authenticateUser, pagesRoutes); // Pages require authentication
 
 // Catch-all for handling 404s

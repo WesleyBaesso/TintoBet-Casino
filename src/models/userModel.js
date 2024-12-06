@@ -54,5 +54,36 @@ const getUserBalance = async (username) => {
     });
 };
 
+// Function to update a user's paint_drops balance
+const updateUserBalance = (username, credits) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // Fetch the current balance of the user
+            const currentBalance = await getUserBalance(username);
 
-module.exports = { registerUser, findUserByUsername, getUserBalance };
+            // Add the credits to the current balance
+            const newBalance = currentBalance + credits;
+
+            // Update the balance in the database
+            const updateQuery = 'UPDATE users SET paint_drops = ? WHERE username = ?';
+            
+            db.run(updateQuery, [newBalance, username], function(err) {
+                if (err) {
+                    return reject(err); // Reject if there's an error in the update
+                }
+
+                // Check if the user exists and was updated
+                if (this.changes === 0) {
+                    return reject(new Error('User not found')); // Reject if no rows were updated
+                }
+
+                // Resolve with the updated balance and a success message
+                resolve({ username, newBalance, message: 'Balance updated successfully' });
+            });
+        } catch (error) {
+            reject(error); // Reject if an error occurs while fetching the balance or updating
+        }
+    });
+};
+
+module.exports = { registerUser, findUserByUsername, getUserBalance, updateUserBalance };

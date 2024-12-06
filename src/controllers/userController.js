@@ -63,5 +63,28 @@ const logout = (req, res) => {
     }
 };
 
-module.exports = { register, login, logout };
+// Update user balance function in the controller
+const updateBalance = async (req, res) => {
+    const { amount } = req.body;  // Now expects 'amount' instead of 'balance'
+
+    // Validate the input
+    if (typeof amount !== 'number' || amount <= 0) {
+        return res.status(400).json({ message: 'Invalid amount value' });
+    }
+
+    try {
+        const user = res.locals.user;  // Assuming user is set by authenticateUser middleware
+        const updatedUser = await userModel.updateUserBalance(user.username, amount);
+
+        // Check if response is valid (i.e., balance updated)
+        console.log('Balance updated:', updatedUser);
+        res.status(200).json(updatedUser);  // Return updated user with new balance
+    } catch (error) {
+        console.error('Error during balance update:', error);
+        res.status(500).json({ message: 'Failed to update balance' });
+    }
+};
+
+
+module.exports = { register, login, logout, updateBalance };
 

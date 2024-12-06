@@ -7,7 +7,7 @@ router.get('/:pageName', (req, res) => {
     const pageName = req.params.pageName;
 
     // Validate pageName to prevent directory traversal attacks
-    const validPages = ['crash', 'blackjack', 'slot-machine']; // Define your valid pages
+    const validPages = ['crash', 'blackjack', 'slot-machine', 'account']; // Define your valid pages
     if (!validPages.includes(pageName)) {
         return res.status(404).send('Page not found');
     }

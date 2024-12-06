@@ -1,4 +1,4 @@
-import { registerUser, loginUser, getUserBalance } from '../service/service.js';
+import { registerUser, loginUser, getUserBalance, logoutUser, updateUserBalance } from '../service/service.js';
 
 // Modal logic for Login (unchanged)
 const loginModal = document.getElementById("loginModal");
@@ -38,7 +38,7 @@ window.addEventListener("click", function (event) {
     }
 });
 
-// Handle Registration Form Submission
+// Handle Registration Form Submission (unchanged)
 document.getElementById('registration-form').addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -55,7 +55,7 @@ document.getElementById('registration-form').addEventListener('submit', async fu
         const response = await registerUser({ username: registrationUsername, password: registrationPassword });
         alert('Usuário registrado com sucesso!');
         console.log('Registration successful:', response);
-        window.location.href = '/index.html'; // Redirect to the login page
+        window.location.href = '/account.html'; // Redirect to the login page
     } catch (error) {
         alert('Erro ao registrar usuário. Por favor, tente novamente.');
         console.error('Registration error:', error);
@@ -80,7 +80,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
         // Proceed with successful login logic
         alert('Login realizado com sucesso!');
         console.log('Login successful:', response);
-        window.location.href = '/index.html'; // Redirect to the main page
+        window.location.href = '/account.html'; 
         
     } catch (error) {
         alert('Erro ao fazer login. Por favor, verifique seu usuário e senha.');
@@ -88,16 +88,79 @@ document.getElementById('login-form').addEventListener('submit', async function 
     }
 });
 
-// Fetch user data (unchanged)
-// document.addEventListener('DOMContentLoaded', async () => {
-//     try {
-//         // Fetch user data (username and balance)
-//         const userData = await getUserBalance();
+// Fetch user data (updated to manage button visibility)
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Fetch user data (username and balance)
+        const userData = await getUserBalance();
 
-//         // Display username and balance on the page
-//         document.getElementById('usernameDisplay').textContent = `${userData.username}`;
-//         document.getElementById('creditsDisplay').textContent = `${userData.balance}`;
-//     } catch (error) {
-//         console.error('Error loading user data:', error);
-//     }
-// });
+        // Display username and balance on the page
+        document.getElementById('usernameDisplay').textContent = `${userData.username}`;
+        document.getElementById('creditsDisplay').textContent = `${userData.balance}`;
+
+        // Hide login and register buttons, show logout button
+        document.getElementById('openLoginModalBtn').style.display = 'none';
+        document.getElementById('openRegistrationModalBtn').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'inline-block';
+
+        // Show the "Add Credits" section
+        document.getElementById('creditManagement').style.display = 'block';
+
+    } catch (error) {
+        console.error('Error loading user data:', error);
+        
+        // If no user data is found, keep login and register buttons visible
+        document.getElementById('openLoginModalBtn').style.display = 'inline-block';
+        document.getElementById('openRegistrationModalBtn').style.display = 'inline-block';
+        document.getElementById('logoutBtn').style.display = 'none';
+    }
+});
+
+// Add Credits Button Logic
+document.getElementById('addCreditsBtn').addEventListener('click', async function () {
+    const creditAmount = parseInt(document.getElementById('creditAmount').value);
+
+    if (isNaN(creditAmount) || creditAmount <= 0) {
+        alert('Por favor, insira um valor válido.');
+        return;
+    }
+
+    const balanceData = { amount: creditAmount }; // Amount to be added to the balance
+
+    try {
+        // Update user balance
+        const updatedUser = await updateUserBalance(balanceData);
+
+        // Update balance on the page dynamically
+        document.getElementById('creditsDisplay').textContent = updatedUser.balance;
+
+        alert('Créditos adicionados com sucesso!');
+
+        // Optionally, re-fetch user data (balance)
+        const newUserData = await getUserBalance();
+        document.getElementById('creditsDisplay').textContent = `${newUserData.balance}`;
+    } catch (error) {
+        alert('Erro ao adicionar créditos. Tente novamente.');
+        console.error('Error during balance update:', error);
+    }
+});
+
+
+// Logout functionality
+document.getElementById('logoutBtn').addEventListener('click', async function () {
+    try {
+        // Call logoutUser to log out
+        const response = await logoutUser();
+
+        if (response.status === 200) {
+            // On success, redirect to the main page (index.html)
+            alert('Você foi desconectado com sucesso!');
+            window.location.href = '/index.html';
+        } else {
+            throw new Error('Erro ao fazer logout');
+        }
+    } catch (error) {
+        alert('Erro ao tentar fazer logout. Tente novamente.');
+        console.error('Logout error:', error);
+    }
+});
