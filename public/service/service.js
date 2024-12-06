@@ -110,3 +110,27 @@ export async function updateUserBalance(balanceData) {
         throw error;  // Rethrow error to be handled by the calling function
     }
 }
+
+// Function to handle game request with BetValue and GameType
+export async function handleGameRequest(betValue, gameType) {
+    try {
+        const response = await fetch('http://localhost:3000/api/games/handle-game-request', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ betValue, gameType }), // Send BetValue and GameType in the body
+            credentials: 'same-origin',  // Ensure cookies are sent along
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to process game request');
+        }
+
+        // Parse the JSON response from the server
+        const data = await response.json();
+        return data;  // This could be the result of the game or a success message
+    } catch (error) {
+        console.error('Error handling game request:', error);
+        throw error;  // Rethrow error to be handled by the calling function
+    }
+}
+

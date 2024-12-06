@@ -14,7 +14,6 @@ let sumEl = document.querySelector("#sum-el")
 let cardsEl = document.querySelector("#cards-el")
 let playerEl = document.querySelector("#player-el")
 
-
 function getRandomCard() {
     let randomNumber = Math.floor(Math.random() * 13)+1 
     if (randomNumber === 1) {
