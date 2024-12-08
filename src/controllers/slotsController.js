@@ -1,4 +1,4 @@
-const playGame = async (userId, betValue, alwaysWin = false) => {
+const playGame = async (betValue, alwaysWin = false) => {
   const itemsLength = 4; // Known items length (hardcoded in this case)
   
   // If alwaysWin is true, force a winning result

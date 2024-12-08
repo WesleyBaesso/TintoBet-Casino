@@ -1,4 +1,4 @@
-import { handleGameRequest, getUserBalance } from "../service/service.js";
+import { handleGameRequest, getUserBalance, fetchPage } from "../service/service.js";
 
 const doors = document.querySelectorAll(".door");
 const lever = document.querySelector("#lever");
@@ -131,3 +131,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Update balance when the page loads
   await updateUserBalance();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Attach click event listeners to all game buttons
+  const pageRedirects = document.querySelectorAll('.page-redirect');
+  
+  pageRedirects.forEach(button => {
+      button.addEventListener('click', function() {
+          const pageName = this.getAttribute('page-name');
+          redirectToPage(pageName);
+      });
+  });
+});
+
+// Redirect to the game's page by calling the service.js function
+function redirectToPage(pageName) {
+  fetchPage(pageName)
+      .then(url => {
+          // Redirect the user to the specific game page
+          window.location.href = url;
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('Game not found!');
+      });
+}

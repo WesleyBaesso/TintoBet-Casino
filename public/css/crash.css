@@ -347,10 +347,15 @@ h2 {
     border: 2px solid #45a049;
     box-shadow: 0 0 20px rgba(0, 255, 51, 0.8);
 }
-.result {
-    margin-top: 1rem;
-    font-size: 1.2rem;
+
+#result {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #ff0000; /* Red color for emphasis */
+    font-weight: bold;
+    display: block; /* Ensure it is displayed */
 }
+
 
 canvas {
     margin-top: 1.5rem;
