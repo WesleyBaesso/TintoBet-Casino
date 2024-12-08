@@ -1,9 +1,10 @@
-import { handleGameRequest } from "../service/service.js";
+import { handleGameRequest, getUserBalance } from "../service/service.js";
 
 const doors = document.querySelectorAll(".door");
 const lever = document.querySelector("#lever");
 const betInput = document.querySelector("#betAmount");
 const slotMachine = document.querySelector(".slot-machine");
+const creditsDisplay = document.getElementById('creditsDisplay');
 
 const items = [
   "images/paleta-de-cores.png",
@@ -14,13 +15,17 @@ const items = [
 
 export const slotMachineUI = {
   displayWin(prize) {
-    alert(`Você ganhou! +${prize} 💵.`);
     this.flashBackground(slotMachine, "rgb(85, 239, 196)");
+    setTimeout(() => {
+      alert(`Você ganhou! +${prize} Paint Drops`);
+    }, 100);
   },
 
   displayLoss() {
-    alert("Você perdeu! Tente novamente.");
     this.flashBackground(slotMachine, "rgb(255, 99, 71)");
+    setTimeout(() => {
+      alert("Você perdeu! Tente novamente.");
+    }, 100);
   },
 
   flashBackground(element, color) {
@@ -30,34 +35,55 @@ export const slotMachineUI = {
     }, 2000);
   },
 
+  resetDoors() {
+    for (const door of doors) {
+      const boxes = door.querySelector(".boxes");
+      boxes.style.transitionDuration = "0s";
+      boxes.style.transform = "translateY(0)";
+      boxes.innerHTML = "";
+    }
+  },
+
   initDoors(doorResults, duration = 1) {
+    this.resetDoors();
+
     for (const [index, door] of doors.entries()) {
       const boxes = door.querySelector(".boxes");
-      const boxesClone = boxes.cloneNode(false);
+      const pool = [...items, ...items, ...items];
+      pool.push(items[doorResults[index]]);
 
-      const pool = [items[doorResults[index]]]; // Map indices to item paths
-
-      for (let i = pool.length - 1; i >= 0; i--) {
+      for (const item of pool) {
         const box = document.createElement("div");
         box.classList.add("box");
         box.style.width = `${door.clientWidth}px`;
         box.style.height = `${door.clientHeight}px`;
 
         const img = document.createElement("img");
-        img.src = pool[i];
+        img.src = item;
         img.style.width = "60%";
         img.style.height = "50%";
 
         box.appendChild(img);
-        boxesClone.appendChild(box);
+        boxes.appendChild(box);
       }
 
-      boxesClone.style.transitionDuration = `${duration > 0 ? duration : 1}s`;
-      boxesClone.style.transform = `translateY(-${door.clientHeight * (pool.length - 1)}px)`;
-      door.replaceChild(boxesClone, boxes);
+      setTimeout(() => {
+        boxes.style.transitionDuration = `${duration}s`;
+        boxes.style.transform = `translateY(-${door.clientHeight * (pool.length - 1)}px)`;
+      }, 50);
     }
   },
 };
+
+async function updateUserBalance() {
+  try {
+    const userData = await getUserBalance();
+    creditsDisplay.textContent = `${userData.balance}`;
+  } catch (error) {
+    console.error("Error fetching user balance:", error);
+    alert("Erro ao atualizar o saldo. Tente novamente.");
+  }
+}
 
 async function handleLeverPull() {
   const betAmount = parseInt(betInput.value);
@@ -67,7 +93,6 @@ async function handleLeverPull() {
   }
 
   try {
-    // Call the backend to process the game logic
     const { result, success } = await handleGameRequest(betAmount, "slots");
 
     if (!success) {
@@ -77,14 +102,19 @@ async function handleLeverPull() {
 
     const { winnings, doorResults } = result;
 
-    // Update the slot machine UI
     slotMachineUI.initDoors(doorResults, 2);
 
-    if (winnings > 0) {
-      slotMachineUI.displayWin(winnings);
-    } else {
-      slotMachineUI.displayLoss();
-    }
+    setTimeout(async () => {
+      if (winnings > 0) {
+        slotMachineUI.displayWin(winnings);
+      } else {
+        slotMachineUI.displayLoss();
+      }
+
+      // Update the balance after the spin
+      await updateUserBalance();
+    }, 2000);
+
   } catch (error) {
     console.error("Error handling lever pull:", error);
     alert("Ocorreu um erro ao processar a aposta. Tente novamente.");
@@ -95,4 +125,9 @@ function attachEventListeners() {
   lever.addEventListener("click", handleLeverPull);
 }
 
-document.addEventListener("DOMContentLoaded", attachEventListeners);
+document.addEventListener("DOMContentLoaded", async () => {
+  attachEventListeners();
+
+  // Update balance when the page loads
+  await updateUserBalance();
+});
