@@ -1,7 +1,78 @@
-/* General body styling */
+@font-face {
+    font-family: 'woodshed';
+    src: url('../fonts/woodshed-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'woodshed';
+    src: url('../fonts/woodshed-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'woodshedtexture';
+    src: url('../fonts/woodshed-texture-webfont.woff2') format('woff2'),
+         url('../fonts/woodshed-texture-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'agdasima';
+    src: url('../fonts/agdasima-bold-webfont.woff2') format('woff2'),
+         url('../fonts/agdasima-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'agdasima';
+    src: url('../fonts/agdasima-regular-webfont.woff2') format('woff2'),
+         url('../fonts/agdasima-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-bold-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-regular-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'belanosima';
+    src: url('../fonts/belanosima-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/belanosima-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: url("/public/images/raining-money-dark.gif") no-repeat center center;
+    background-size: cover;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,7 +81,25 @@ body {
     height: 100vh;
     flex-direction: column;
 }
+main {
+    background-color: rgba(245, 255, 238, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    height: 400px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
 
+.page-redirect {
+    img {
+        width: 100%;
+        max-width: 200px;
+    }
+}
 /* Button styles */
 button {
     background-color: #4CAF50;
@@ -25,8 +114,10 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
-}
+    color: #fff;
+    border: 2px solid #006400;
+    background-color: #00640065;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);}
 
 /* Modal background styling */
 .modal {
@@ -58,14 +149,11 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #f1f1f1;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
 }
 
 .modal-header h1 {
     margin: 0;
     font-size: 20px;
-    color: #333;
 }
 
 /* Close button for modals */
@@ -77,7 +165,18 @@ button:hover {
 }
 
 .modal-close:hover {
-    color: #333;
+    color: #970202;
+}
+
+h1 {
+    font-family: "belanosima";
+    font-size: 40px;
+    margin: 0;
+}
+h2 {
+    font-family: "belanosima";
+    font-size: 40px;
+    margin: 0;
 }
 
 /* Form input styles */
@@ -103,28 +202,43 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
-}
+    color: #fff;
+    border: 2px solid #006400;
+    background-color: #00640065;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);}
 
 /* Form text and labels */
 label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #555;
+    font-family: "agdasima";
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
 }
 
+#login-form, #registration-form {
+    padding: 20px;
+}
+
+.termos {
+    display: grid;
+    justify-content: center;
+}
 p {
-    font-size: 12px;
+    font-size: 18px;
     color: #555;
+    font-family: "agdasima";
+
 }
 
 a {
+    font-family: "agdasima";
     color: #4CAF50;
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
+    text-shadow: 0 0 10px #4CAF50;
 }
 
 /* Modal form layout */
