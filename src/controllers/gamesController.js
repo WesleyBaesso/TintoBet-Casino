@@ -61,7 +61,6 @@ const startCrashGame = async (req, res) => {
 const stopCrashGame = async (req, res) => {
     const { gameId } = req.body;
     const user = res.locals.user;
-    console.log(gameId)
     try {
         if (!gameId) throw new Error('Invalid game ID');
         const result = await crashController.stopGame(gameId, user);

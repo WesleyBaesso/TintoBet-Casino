@@ -7,6 +7,15 @@ const crashController = require('./src/controllers/crashController'); // Import 
 
 const wss = new WebSocket.Server({ noServer: true }); // Initialize WebSocket server
 
+// Function to broadcast a message to all connected WebSocket clients
+const broadcast = (data) => {
+    wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify(data));
+        }
+    });
+};
+
 // WebSocket connection handling
 wss.on('connection', (ws) => {
     console.log('New WebSocket connection');
@@ -15,18 +24,15 @@ wss.on('connection', (ws) => {
         console.log('Received:', message);
     });
 
-    // Function to notify frontend about the crash event
-    const notifyCrash = (gameId, crashMultiplier) => {
-        const message = JSON.stringify({
+    // Register crash notification callback
+    crashController.setNotifyCrashCallback((gameId, crashMultiplier) => {
+        const message = {
             type: 'game_crash',
             gameId,
             crashMultiplier,
-        });
-        ws.send(message); // Send crash notification to the frontend
-    };
-
-    // Logic to stop the game if it crashes (this will now be handled by the controller)
-    crashController.setNotifyCrashCallback(notifyCrash);
+        };
+        broadcast(message); // Notify all clients about the crash
+    });
 });
 
 // Integrate WebSocket server with your existing HTTP server
@@ -42,3 +48,4 @@ const PORT = process.env.PORT || 3000; // Get port from environment variables or
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+ 

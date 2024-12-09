@@ -51,7 +51,7 @@ ws.onmessage = (event) => {
 
         if (crashedGameId === gameId) {
             clearInterval(gameInterval); // Stop the game interval
-            showResult(`Você perdeu! O jogo estourou com multiplicador ${crashMultiplier}`);
+            showResult(`Você perdeu! O jogo estourou com multiplicador ${crashMultiplier.toFixed(2)}`);
         }
     }
 };

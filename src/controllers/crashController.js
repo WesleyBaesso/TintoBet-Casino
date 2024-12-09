@@ -20,6 +20,7 @@ const startGame = async (betAmount) => {
         betValue: betAmount,
         crashMultiplier,
         startTime,
+        hasCrashed: false, // Track crash state
     };
 
     return {
@@ -29,22 +30,37 @@ const startGame = async (betAmount) => {
     };
 };
 
-// Stop the game if it crashes
+// Periodically monitor games for crashes
+const monitorGames = () => {
+    const now = Date.now();
+
+    for (const [gameId, game] of Object.entries(gameStorage)) {
+        const elapsedTime = (now - game.startTime) / 1000; // Time in seconds
+        const currentMultiplier = parseFloat((elapsedTime * 0.1 + 1).toFixed(2));
+
+        // Check if the game has crashed
+        if (!game.hasCrashed && currentMultiplier >= game.crashMultiplier) {
+            game.hasCrashed = true; // Mark game as crashed
+            if (notifyCrash) {
+                notifyCrash(gameId, game.crashMultiplier); // Notify frontend of the crash
+            }
+            delete gameStorage[gameId]; // Remove game from storage after notifying
+        }
+    }
+};
+
+// Stop the game if the user cashes out
 const stopGame = async (gameId) => {
     const game = gameStorage[gameId];
     if (!game) throw new Error('Game not found');
 
-    const { betValue, crashMultiplier, startTime } = game;
+    const { betValue, startTime } = game;
     const elapsedTime = (Date.now() - startTime) / 1000;
     const currentMultiplier = parseFloat((elapsedTime * 0.1 + 1).toFixed(2));
 
-    // Check if the game has crashed
-    if (currentMultiplier >= crashMultiplier) {
-        delete gameStorage[gameId]; // Game crashed, so delete it from storage
-        if (notifyCrash) {
-            notifyCrash(gameId, crashMultiplier);  // Notify frontend of the crash
-        }
-        return { winnings: 0, message: "Game crashed, no winnings!", crashMultiplier: currentMultiplier };
+    // Prevent cash out if the game has already crashed
+    if (game.hasCrashed) {
+        throw new Error('Game has already crashed');
     }
 
     const winnings = parseFloat((betValue * currentMultiplier).toFixed(2));
@@ -56,6 +72,9 @@ const stopGame = async (gameId) => {
 const generateGameId = () => {
     return 'game-' + Math.random().toString(36).substr(2, 9);
 };
+
+// Start monitoring games periodically
+setInterval(monitorGames, 100); // Check for crashes every 100ms
 
 // Export the functions
 module.exports = {
