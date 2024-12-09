@@ -15,7 +15,7 @@ const handleBlackjack = async (req, res) => {
 
     try {
         validateBetAndUser(betValue, user);
-        const result = await blackjackController.playGame(betValue);
+        const result = await blackjackController.playGame(user, betValue);
         res.json({ success: true, result });
     } catch (error) {
         res.status(400).json({ error: error.message });
