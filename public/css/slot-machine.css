@@ -1,16 +1,137 @@
+@font-face {
+  font-family: 'woodshed';
+  src: url('../fonts/woodshed-webfont.woff2') format('woff2'),
+       url('../fonts/woodshed-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'woodshed';
+  src: url('../fonts/woodshed-webfont.woff2') format('woff2'),
+       url('../fonts/woodshed-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'woodshedtexture';
+  src: url('../fonts/woodshed-texture-webfont.woff2') format('woff2'),
+       url('../fonts/woodshed-texture-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'agdasima';
+  src: url('../fonts/agdasima-bold-webfont.woff2') format('woff2'),
+       url('../fonts/agdasima-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'agdasima';
+  src: url('../fonts/agdasima-regular-webfont.woff2') format('woff2'),
+       url('../fonts/agdasima-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'belanosima';
+  src: url('../fonts/belanosima-bold-webfont.woff2') format('woff2'),
+       url('../fonts/belanosima-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'belanosima';
+  src: url('../fonts/belanosima-regular-webfont.woff2') format('woff2'),
+       url('../fonts/belanosima-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'belanosima';
+  src: url('../fonts/belanosima-semibold-webfont.woff2') format('woff2'),
+       url('../fonts/belanosima-semibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  background: #1a2b45;
-  font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  background: radial-gradient(circle, #640000, #2b0202);
+  color: #fff;
+  margin: 0;
+}
+
+/* Header (Floating Island) */
+header {
+  position: relative;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, #640000, #2b0202);
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+  padding: 5px 50px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 900px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
+header .logo img {
+  max-height: 100px;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+header .btn {
+  font-family: 'agdasima';
+  letter-spacing: 1.5px;
+  background-color: #ffcc00;
+  border: none;
+  font-size: 16px;
+  padding: 10px 30px;
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+header .btn:hover {
+  border: 2px solid #3b1d56;
+  background-color: #3b1d5685;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+}
+
 #app {
+  margin-top: 50px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -44,7 +165,7 @@ body {
 }
 
 .boxes {
-  transition: transform 1s ease-in-out; /* Ensure this matches the JavaScript */
+  transition: transform 1s ease-in-out;
   display: flex;
   flex-direction: column;
 }
@@ -101,4 +222,8 @@ input {
 
 button:active {
   transform: scale(0.98);
+}
+
+.header-container {
+  display: flex;
 }
