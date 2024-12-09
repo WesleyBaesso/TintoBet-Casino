@@ -70,10 +70,20 @@
 
 }
 
+.user-info {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'belanosima';
+  color: #ffcc00;
+}
+
 body {
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle, #640000, #2b0202);
+  background: radial-gradient(circle, #3b1d56, #000000);
   color: #fff;
   margin: 0;
 }
@@ -84,7 +94,7 @@ header {
   top: 2%;
   left: 50%;
   transform: translateX(-50%);
-  background: radial-gradient(circle, #640000, #2b0202);
+  background: radial-gradient(circle, #3b1d56, #000000);
   border-radius: 20px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
   padding: 5px 50px;
@@ -184,18 +194,22 @@ header .btn:hover {
 }
 
 button {
-  background-color: #ff6b6b;
-  color: white;
-  font-size: 1.2rem;
-  padding: 12px 20px;
-  border: none;
+  font-size: 20px;
+  background-color: #45a049;
+  border: 2px solid #45a049;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background-color 0.3s;
 }
-
+  
 button:hover {
-  background-color: #ff4757;
+  color: #fff;
+  background-color: #45a049a1;
+  border: 2px solid #45a049;
+  box-shadow: 0 0 20px rgba(0, 255, 51, 0.8);
 }
 
 .bet {
