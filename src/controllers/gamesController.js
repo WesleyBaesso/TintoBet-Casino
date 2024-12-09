@@ -1,44 +1,80 @@
+const userModel = require('../models/userModel');
 const blackjackController = require('./blackjackController');
 const crashController = require('./crashController');
 const slotsController = require('./slotsController');
 
-const handleGameRequest = async (req, res) => {
-    const { betValue, gameType } = req.body; // Get betValue and gameType from the request body
-    const userId = req.session.userId; // Get userId from the session
+const validateBetAndUser = (betValue, user) => {
+    if (!user) throw new Error('User is not authenticated');
+    if (!betValue || typeof betValue !== 'number' || betValue <= 0) throw new Error('Invalid bet value');
+    if (betValue > user.balance) throw new Error('Insufficient balance');
+};
 
-    if (!userId) {
-        return res.status(401).json({ error: 'User is not authenticated' });
-    }
-
-    if (!betValue || typeof betValue !== 'number' || betValue <= 0) {
-        return res.status(400).json({ error: 'Invalid bet value' });
-    }
-
-    if (!gameType || !['blackjack', 'crash', 'slot-machine'].includes(gameType)) {
-        return res.status(400).json({ error: 'Invalid game type' });
-    }
+const handleBlackjack = async (req, res) => {
+    const { betValue } = req.body;
+    const user = res.locals.user;
 
     try {
-        let result;
-        switch (gameType) {
-            case 'blackjack':
-                result = await blackjackController.playGame(userId, betValue);
-                break;
-            case 'crash':
-                result = await crashController.playGame(userId, betValue);
-                break;
-            case 'slots':
-                result = await slotsController.playGame(userId, betValue);
-                break;
-            default:
-                return res.status(400).json({ error: 'Invalid game type' });
-        }
-
+        validateBetAndUser(betValue, user);
+        const result = await blackjackController.playGame(user, betValue);
         res.json({ success: true, result });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'An error occurred' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
 };
 
-module.exports = { handleGameRequest };
+const handleSlots = async (req, res) => {
+    const { betValue } = req.body;
+    const user = res.locals.user;
+
+    try {
+        validateBetAndUser(betValue, user);
+        userModel.updateUserBalance(user.username, -betValue);
+        user.balance -= betValue;
+
+        const result = await slotsController.playGame(betValue);
+        if (result.winnings > 0) {
+            userModel.updateUserBalance(user.username, result.winnings);
+            user.balance += result.winnings;
+        }
+        res.json({ success: true, result });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+const startCrashGame = async (req, res) => {
+    const { betValue } = req.body;
+    const user = res.locals.user;
+
+    try {
+        validateBetAndUser(betValue, user);
+        userModel.updateUserBalance(user.username, -betValue);
+        user.balance -= betValue;
+
+        const result = await crashController.startGame(betValue, user);
+        res.json({ success: true, result });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+const stopCrashGame = async (req, res) => {
+    const { gameId } = req.body;
+    const user = res.locals.user;
+    try {
+        if (!gameId) throw new Error('Invalid game ID');
+        const result = await crashController.stopGame(gameId, user);
+        userModel.updateUserBalance(user.username, result.winnings);
+        user.balance += result.winnings;
+        res.json({ success: true, result });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+module.exports = {
+    handleBlackjack,
+    handleSlots,
+    startCrashGame,
+    stopCrashGame,
+};

@@ -15,11 +15,11 @@ const registerUser = (username, password) => {
 
             // If username doesn't exist, proceed with the registration
             const insertQuery = 'INSERT INTO users (username, password) VALUES (?, ?)';
-            db.run(insertQuery, [username, password], function(err) {
+            db.run(insertQuery, [username, password], function (err) {
                 if (err) {
                     return reject(err); // Reject if there's an error in the insertion
                 }
-                
+
                 // Resolve with a success message or the inserted data if needed
                 resolve({ username, message: 'User registered successfully' });
             });
@@ -55,35 +55,31 @@ const getUserBalance = async (username) => {
 };
 
 // Function to update a user's paint_drops balance
-const updateUserBalance = (username, credits) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            // Fetch the current balance of the user
-            const currentBalance = await getUserBalance(username);
+const updateUserBalance = async (username, credits) => {
+    try {
+        // Fetch the current balance of the user
+        const currentBalance = await getUserBalance(username);
+        const newBalance = currentBalance + credits;
 
-            // Add the credits to the current balance
-            const newBalance = currentBalance + credits;
+        // Update the balance in the database directly
+        const updateQuery = 'UPDATE users SET paint_drops = ? WHERE username = ?';
 
-            // Update the balance in the database
-            const updateQuery = 'UPDATE users SET paint_drops = ? WHERE username = ?';
-            
+        return new Promise((resolve, reject) => {
             db.run(updateQuery, [newBalance, username], function(err) {
                 if (err) {
                     return reject(err); // Reject if there's an error in the update
                 }
 
-                // Check if the user exists and was updated
                 if (this.changes === 0) {
-                    return reject(new Error('User not found')); // Reject if no rows were updated
+                    return reject(new Error('User not found'));
                 }
 
-                // Resolve with the updated balance and a success message
                 resolve({ username, newBalance, message: 'Balance updated successfully' });
             });
-        } catch (error) {
-            reject(error); // Reject if an error occurs while fetching the balance or updating
-        }
-    });
+        });
+    } catch (error) {
+        throw new Error('Error updating balance: ' + error.message);
+    }
 };
 
 module.exports = { registerUser, findUserByUsername, getUserBalance, updateUserBalance };

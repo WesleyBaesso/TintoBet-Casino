@@ -1,159 +1,136 @@
-import { fetchPage } from "../service/service.js";
+import { handleGameRequest, getUserBalance, fetchPage } from "../service/service.js";
 
+const doors = document.querySelectorAll(".door");
+const lever = document.querySelector("#lever");
+const betInput = document.querySelector("#betAmount");
+const slotMachine = document.querySelector(".slot-machine");
+const creditsDisplay = document.getElementById('creditsDisplay');
 
-(function () {
-  const items = [
-    'images/paleta-de-cores.png', // Caminho para a imagem de maçã
-    'images/pincel.png', // Caminho para a imagem de banana
-    'images/tinta-de-rolo.png', // Caminho para a imagem de cereja
-    'images/balde-de-tinta.png', // Caminho para a imagem de melancia
-  ];
+const items = [
+  "images/paleta-de-cores.png",
+  "images/pincel.png",
+  "images/tinta-de-rolo.png",
+  "images/balde-de-tinta.png",
+];
 
-  const doors = document.querySelectorAll('.door');
-  const lever = document.querySelector('#lever');
-  const betInput = document.querySelector('#betAmount');
-  const saldoDisplay = document.querySelector('#saldo');
-  const initialBalanceInput = document.querySelector('#initialBalance');
-  const setBalanceButton = document.querySelector('#setBalance');
+export const slotMachineUI = {
+  displayWin(prize) {
+    this.flashBackground(slotMachine, "rgb(85, 239, 196)");
+    setTimeout(() => {
+      alert(`Você ganhou! +${prize} Paint Drops`);
+    }, 100);
+  },
 
-  let saldo = 0; // Saldo inicial do jogador
+  displayLoss() {
+    this.flashBackground(slotMachine, "rgb(255, 99, 71)");
+    setTimeout(() => {
+      alert("Você perdeu! Tente novamente.");
+    }, 100);
+  },
 
-  // Seleciona o elemento com a classe 'slot-machine'
-  const slotMachine = document.querySelector('.slot-machine');
+  flashBackground(element, color) {
+    element.style.backgroundColor = color;
+    setTimeout(() => {
+      element.style.backgroundColor = "";
+    }, 2000);
+  },
 
-  // Atualiza o saldo na tela
-  function updateSaldo() {
-    saldoDisplay.textContent = saldo;
-  }
-
-  // Função para definir o saldo inicial
-  setBalanceButton.addEventListener('click', () => {
-    const initialBalance = parseInt(initialBalanceInput.value);
-    if (initialBalance > 0) {
-      saldo = initialBalance; // Define o saldo inicial
-      updateSaldo(); // Atualiza o saldo na tela
-      alert(`Saldo inicial de ${saldo} 💰 definido!`);
-    } else {
-      alert("Valor de saldo inicial inválido.");
-    }
-  });
-
-  lever.addEventListener('click', spin);
-
-  function init(firstInit = true, duration = 1) {
+  resetDoors() {
     for (const door of doors) {
-      const boxes = door.querySelector('.boxes');
-      const boxesClone = boxes.cloneNode(false);
-      const pool = ['images/ponto-de-interrogacao.png'];
+      const boxes = door.querySelector(".boxes");
+      boxes.style.transitionDuration = "0s";
+      boxes.style.transform = "translateY(0)";
+      boxes.innerHTML = "";
+    }
+  },
 
-      if (!firstInit) {
-        const arr = [...items]; // Usando somente as imagens
-        pool.push(...shuffle(arr));
+  initDoors(doorResults, duration = 1) {
+    this.resetDoors();
 
-        boxesClone.addEventListener('transitionstart', function () {
-          this.querySelectorAll('.box').forEach((box) => {
-            box.style.filter = 'blur()';
-          });
-        }, { once: true });
+    for (const [index, door] of doors.entries()) {
+      const boxes = door.querySelector(".boxes");
+      const pool = [...items, ...items, ...items];
+      pool.push(items[doorResults[index]]);
 
-        boxesClone.addEventListener('transitionend', function () {
-          this.querySelectorAll('.box').forEach((box, index) => {
-            box.style.filter = 'blur(0)';
-            if (index > 0) this.removeChild(box);
-          });
-        }, { once: true });
-      }
+      for (const item of pool) {
+        const box = document.createElement("div");
+        box.classList.add("box");
+        box.style.width = `${door.clientWidth}px`;
+        box.style.height = `${door.clientHeight}px`;
 
-      for (let i = pool.length - 1; i >= 0; i--) {
-        const box = document.createElement('div');
-        box.classList.add('box');
-        box.style.width = door.clientWidth + 'px';
-        box.style.height = door.clientHeight + 'px';
-
-        // Criando um elemento de imagem
-        const img = document.createElement('img');
-        img.src = pool[i]; // Atribui o caminho da imagem ao 'src'
-        img.style.width = '60%';
-        img.style.height = '50%';
+        const img = document.createElement("img");
+        img.src = item;
+        img.style.width = "60%";
+        img.style.height = "50%";
 
         box.appendChild(img);
-        boxesClone.appendChild(box);
+        boxes.appendChild(box);
       }
 
-      boxesClone.style.transitionDuration = `${duration > 0 ? duration : 1}s`;
-      boxesClone.style.transform = `translateY(-${door.clientHeight * (pool.length - 1)}px)`;
-      door.replaceChild(boxesClone, boxes);
+      setTimeout(() => {
+        boxes.style.transitionDuration = `${duration}s`;
+        boxes.style.transform = `translateY(-${door.clientHeight * (pool.length - 1)}px)`;
+      }, 50);
     }
+  },
+};
+
+async function updateUserBalance() {
+  try {
+    const userData = await getUserBalance();
+    creditsDisplay.textContent = `${userData.balance}`;
+  } catch (error) {
+    console.error("Error fetching user balance:", error);
+    alert("Erro ao atualizar o saldo. Tente novamente.");
+  }
+}
+
+async function handleLeverPull() {
+  const betAmount = parseInt(betInput.value);
+  if (isNaN(betAmount) || betAmount <= 0) {
+    alert("Por favor, insira um valor de aposta válido.");
+    return;
   }
 
-  // Função para girar as portas
-  async function spin() {
-    const betAmount = parseInt(betInput.value);
-    if (betAmount <= 0 || betAmount > saldo) {
-      alert("Valor da aposta inválido ou insuficiente.");
+  try {
+    const { result, success } = await handleGameRequest(betAmount, "slots");
+
+    if (!success) {
+      alert("Erro ao processar o jogo. Tente novamente.");
       return;
     }
 
-    saldo -= betAmount; // Deduz a aposta do saldo
-    updateSaldo(); // Atualiza o saldo na tela
+    const { winnings, doorResults } = result;
 
-    init(false, 2);
+    slotMachineUI.initDoors(doorResults, 2);
 
-    const doorResults = [];
+    setTimeout(async () => {
+      if (winnings > 0) {
+        slotMachineUI.displayWin(winnings);
+      } else {
+        slotMachineUI.displayLoss();
+      }
 
-    for (const door of doors) {
-      const boxes = door.querySelector('.boxes');
-      const duration = parseInt(boxes.style.transitionDuration);
-      boxes.style.transform = 'translateY(0)';
-      await new Promise((resolve) => setTimeout(resolve, duration * 100));
+      // Update the balance after the spin
+      await updateUserBalance();
+    }, 2000);
 
-      const result = boxes.querySelector('.box img').src; // Obtém o caminho da imagem
-      doorResults.push(result); // Armazena o resultado de cada porta
-    }
-
-    // Verifica se todas as imagens são iguais
-    if (doorResults[0] === doorResults[1] && doorResults[0] === doorResults[2]) {
-      // O jogador ganhou! O valor da aposta será multiplicado por 10
-      const prize = betAmount * 10;
-      saldo += prize; // Aumento do saldo
-      updateSaldo(); // Atualiza o saldo na tela
-
-      alert(`Você ganhou! +${prize} 💵.`);
-      
-      // Muda o fundo da slot-machine para verde (vitória)
-      slotMachine.style.backgroundColor = 'rgb(85, 239, 196)'; // Cor verde clara (sucesso)
-
-      // Reseta a cor do fundo após 2 segundos
-      setTimeout(() => {
-        slotMachine.style.backgroundColor = ''; // Reseta para o fundo original
-      }, 2000);
-
-    } else {
-      // O jogador perdeu.
-      alert("Você perdeu! Tente novamente.");
-      
-      // Muda o fundo da slot-machine para vermelho (erro)
-      slotMachine.style.backgroundColor = 'rgb(255, 99, 71)'; // Cor vermelha (erro)
-
-      // Reseta a cor do fundo após 2 segundos
-      setTimeout(() => {
-        slotMachine.style.backgroundColor = ''; // Reseta para o fundo original
-      }, 2000);
-    }
+  } catch (error) {
+    console.error("Error handling lever pull:", error);
+    alert("Ocorreu um erro ao processar a aposta. Tente novamente.");
   }
+}
 
-  // Função para embaralhar as imagens
-  function shuffle(arr) {
-    let m = arr.length;
-    while (m) {
-      const i = Math.floor(Math.random() * m--);
-      [arr[m], arr[i]] = [arr[i], arr[m]];
-    }
-    return arr;
-  }
+function attachEventListeners() {
+  lever.addEventListener("click", handleLeverPull);
+}
 
-  init(); // Inicializa a máquina ao carregar a página
-})();
+document.addEventListener("DOMContentLoaded", async () => {
+  attachEventListeners();
+
+  // Update balance when the page loads
+  await updateUserBalance();
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   // Attach click event listeners to all game buttons

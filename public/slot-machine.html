@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Máquina Caça-Níquel</title>
   <link rel="stylesheet" href="css/slot-machine.css">
 </head>
+
 <body>
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a class="page-redirect" page-name="index"><img src="images/Tinto_Bet-removebg-preview.png"
+            alt="Tinto Bet Logo"></a>
+      </div>
+      <nav>
+        <a class="btn login-btn page-redirect" page-name="account">Account</a>
+      </nav>
+    </div>
+  </header>
   <div id="app">
     <div class="slot-machine">
       <div class="doors">
@@ -26,17 +39,13 @@
       </div>
 
       <div class="bet">
+        <p>Paint Drops: <span id="creditsDisplay"></span></p>
         <input type="number" id="betAmount" placeholder="Valor da Aposta (Multiplicador)" min="1" value="1">
-      </div>
-
-      <div class="saldo">
-        <input type="number" id="initialBalance" placeholder="Valor do Saldo Inicial" min="1" value="0">
-        <button id="setBalance">Definir Saldo Inicial</button>
-        <h3>Saldo: <span id="saldo">0</span> 💰</h3>
       </div>
     </div>
   </div>
 
-  <script src="js/slotMachine.js"></script>
+  <script type="module" src="/js/slotMachine.js"></script>
 </body>
+
 </html>

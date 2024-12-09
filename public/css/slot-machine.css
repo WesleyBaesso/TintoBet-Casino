@@ -44,7 +44,7 @@ body {
 }
 
 .boxes {
-  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out; /* Ensure this matches the JavaScript */
   display: flex;
   flex-direction: column;
 }
