@@ -6,26 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
-    <link rel="stylesheet" href="/css/account.css">
+    <link rel="stylesheet" href="css/account.css">
 </head>
 
 <body>
-    <!-- Buttons to open modals -->
-    <div id="action-buttons">
-        <button id="openLoginModalBtn">Entrar</button>
-        <button id="openRegistrationModalBtn">Cadastre-se</button>
-        <button id="logoutBtn" style="display: none;">Sair</button>
-    </div>
 
-    <!-- Account Information Section -->
-    <div id="accountInfo">
-        <h2>Bem-vindo <span id="usernameDisplay"></span></h2>
-        <p>Paint Drops: <span id="creditsDisplay">0</span></p>
-        <div id="creditManagement" style="display: none;">
-            <input type="number" id="creditAmount" placeholder="Adicione créditos" min="1">
-            <button id="addCreditsBtn">Adicionar Créditos</button>
+    <main>
+        <div class="logo">
+            <a class="page-redirect" page-name="index"><img src="images/Tinto_Bet-removebg-preview.png" alt="Tinto Bet Logo"></a>
+        </div>        
+        
+        <!-- Account Information Section -->
+        <div id="accountInfo">
+            <h2>Bem-vindo <span id="usernameDisplay"></span></h2>
+            <p>Paint Drops: <span id="creditsDisplay">0</span></p>
+            <div id="creditManagement" style="display: none;">
+                <input type="number" id="creditAmount" placeholder="Adicione créditos" min="1">
+                <button id="addCreditsBtn">Adicionar Créditos</button>
+            </div>
         </div>
-    </div>
+
+        <!-- Buttons to open modals -->
+        <div id="action-buttons">
+            <button id="openLoginModalBtn">Entrar</button>
+            <button id="openRegistrationModalBtn">Cadastre-se</button>
+            <button id="logoutBtn" style="display: none;">Sair</button>
+        </div>
+    </main>
 
     <!-- Login Modal -->
     <div id="loginModal" class="modal">
@@ -43,9 +50,9 @@
                     <label for="login-password">Senha:</label>
                     <input type="password" name="password" id="login-password" placeholder="Digite sua senha" required>
                 </div>
-                <div class="half-box">
+                <!-- <div class="half-box">
                     <p><a href="#">Esqueci Minha Senha</a></p>
-                </div>
+                </div> -->
                 <div class="full-box">
                     <input type="submit" value="Continuar">
                 </div>
@@ -73,7 +80,7 @@
                     <label for="passwordConfirmation">Confirmação de senha:</label>
                     <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirme sua senha" required>
                 </div>
-                <div>
+                <div class="termos">
                     <input type="checkbox" name="agreement" id="agreement" required>
                     <label for="agreement">Eu li e aceito os <a href="#">Termos de Privacidade</a></label>
                 </div>
@@ -85,7 +92,7 @@
     </div>
 
     <!-- Import the script -->
-    <script type="module" src="/js/account.js"></script>
+    <script type="module" src="js/account.js"></script>
 
 </body>
 
