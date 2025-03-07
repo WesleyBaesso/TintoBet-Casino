@@ -1,3 +1,18 @@
+### **TintoBet**
+TintoBet é um projeto de desenvolvimento de um cassino online com jogos como Blackjack, Crash, e Slot Machine. O projeto foi desenvolvido como parte de um trabalho acadêmico na disciplina de Desenvolvimento Web.
+
+### **Descrição**
+Este projeto simula um cassino online onde os usuários podem jogar diferentes jogos de cassino, como Blackjack, Crash e Slot Machine. O sistema foi construído com front-end e back-end, permitindo uma experiência de jogo completa.
+
+### **Autores**
+Este projeto foi desenvolvido por:
+
+Giovana - https://github.com/gomes21gi <br>
+André - https://github.com/AndreCypher <br>
+Leonardo - https://github.com/leomtambosi <br>
+Vitor - https://github.com/V-Castro-Alves <br>
+Wesley - https://github.com/WesleyBaesso
+
 ### **PROJECT FOLDER STRUCTURE**
 ```
 tintobet-casino/
