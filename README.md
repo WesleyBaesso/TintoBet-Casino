@@ -1,17 +1,8 @@
 ### **TintoBet**
-TintoBet é um projeto de desenvolvimento de um cassino online com jogos como Blackjack, Crash, e Slot Machine. O projeto foi desenvolvido como parte de um trabalho acadêmico na disciplina de Desenvolvimento Web.
+TintoBet is a project to develop an online casino with games such as Blackjack, Crash and Slot Machine. The project was developed as part of an academic work in the Web Development discipline.
 
-### **Descrição**
-Este projeto simula um cassino online onde os usuários podem jogar diferentes jogos de cassino, como Blackjack, Crash e Slot Machine. O sistema foi construído com front-end e back-end, permitindo uma experiência de jogo completa.
-
-### **Autores**
-Este projeto foi desenvolvido por:
-
-Giovana - https://github.com/gomes21gi <br>
-André - https://github.com/AndreCypher <br>
-Leonardo - https://github.com/leomtambosi <br>
-Vitor - https://github.com/V-Castro-Alves <br>
-Wesley - https://github.com/WesleyBaesso
+### **Description**
+This project simulates an online casino where users can play different casino games, such as Blackjack, Crash and Slot Machine. The system was built with front-end and back-end, allowing a complete gaming experience.
 
 ### **PROJECT FOLDER STRUCTURE**
 ```
@@ -122,3 +113,12 @@ If you want to turn your virtual winnings into real-world rewards, you can conve
   - **Login Page:** When you log in, you'll see your current Paint Drop balance, letting you know how much you can play with.
   - **Game Pages:** Place your Paint Drop bets on any of the available games. Each game shows you the cost of each bet in Paint Drops.
   - **Balance Updates:** As you win or lose, your Paint Drop balance will be updated in real time.
+
+### **Authors**
+This project was developed by:
+
+- André - https://github.com/AndreCypher
+- Giovana - https://github.com/gomes21gi
+- Leonardo - https://github.com/leomtambosi
+- Vitor - https://github.com/V-Castro-Alves
+- Wesley - https://github.com/WesleyBaesso
